@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 public class MenuPausa : MonoBehaviour
 {
     [SerializeField] private GameObject botonPausa;
-    [SerializeField] private GameObject menuPausa;
+    [SerializeField] private GameObject menuPausas;
     public void Pausa()
     {
         Time.timeScale = 0f;
         botonPausa.SetActive(false);
-        menuPausa.SetActive(true);
+        menuPausas.SetActive(true);
     }
 
     public void Reanudar()
     {
         Time.timeScale = 1f;
         botonPausa.SetActive(true);
-        menuPausa.SetActive(false);
+        menuPausas.SetActive(false);
     }
 
     public void Reiniciar()

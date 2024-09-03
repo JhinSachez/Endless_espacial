@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] prefabsToSpawn;      // Array de prefabs a instanciar
     public float minSpawnInterval = 1f;      // Intervalo mínimo de tiempo entre spawns
-    public float maxSpawnInterval = 3f;      // Intervalo máximo de tiempo entre spawns
+    public float maxSpawnInterval = 6f;      // Intervalo máximo de tiempo entre spawns
 
     void Start()
     {

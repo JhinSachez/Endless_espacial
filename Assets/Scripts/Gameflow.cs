@@ -20,7 +20,7 @@ public class Gameflow : MonoBehaviour
 
     IEnumerator SpawnTile()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         Instantiate(tile1Obj, nextTileSpawn, tile1Obj.rotation);
         nextTileSpawn.z += 10;
         StartCoroutine(SpawnTile());
