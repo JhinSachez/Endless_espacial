@@ -11,12 +11,15 @@ public class MovingObstacle : MonoBehaviour
     void Start()
     {
         // Destruye el objeto después de un tiempo determinado
+
         Destroy(gameObject, lifetime);
+
     }
 
     void Update()
     {
         // Mueve el objeto en la dirección especificada a la velocidad determinada
         transform.Translate(direction * speed * Time.deltaTime);
+
     }
 }

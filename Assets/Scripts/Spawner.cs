@@ -8,14 +8,18 @@ public class Spawner : MonoBehaviour
     public float minSpawnInterval = 1f;      // Intervalo mínimo de tiempo entre spawns
     public float maxSpawnInterval = 6f;      // Intervalo máximo de tiempo entre spawns
 
+
     void Start()
     {
         // Inicia la Coroutine para spawnear obstáculos
         StartCoroutine(SpawnObstacles());
+
     }
 
+   
     IEnumerator SpawnObstacles()
     {
+
         while (true)
         {
             // Escoge un prefab aleatoriamente del array
@@ -27,6 +31,12 @@ public class Spawner : MonoBehaviour
             // Espera un tiempo aleatorio antes del siguiente spawn
             float waitTime = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(waitTime);
+
+
         }
     }
+
+  
+    
+
 }

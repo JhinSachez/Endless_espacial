@@ -7,23 +7,29 @@ public class MenuPausa : MonoBehaviour
 {
     [SerializeField] private GameObject botonPausa;
     [SerializeField] private GameObject menuPausas;
+    bool isOnPlay;
+
+    private void Start()
+    {
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
+    }
     public void Pausa()
     {
-        Time.timeScale = 0f;
+        GameManager.GetInstance().ChangeGameState(Game_State.Pause);
         botonPausa.SetActive(false);
         menuPausas.SetActive(true);
     }
 
     public void Reanudar()
     {
-        Time.timeScale = 1f;
+        GameManager.GetInstance().ChangeGameState(Game_State.Play);
         botonPausa.SetActive(true);
         menuPausas.SetActive(false);
     }
 
     public void Reiniciar()
     {
-        Time.timeScale = 1f;
+        GameManager.GetInstance().ChangeGameState(Game_State.Play);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -31,5 +37,10 @@ public class MenuPausa : MonoBehaviour
     {
         Debug.Log("cerrando juego");
         Application.Quit();
+    }
+
+    void OnGameStateChanged(Game_State _gs)
+    {
+        isOnPlay = _gs == Game_State.Play;
     }
 }
