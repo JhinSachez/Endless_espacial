@@ -26,7 +26,7 @@ public class MoveOrb : MonoBehaviour
             StartCoroutine(StopLineChange());
         }
 
-        /*if (_distanceScore.distance => 60)
+        if (_distanceScore.GetComponent<DistanceScore>().distance >= 60)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 10);
             
@@ -41,7 +41,7 @@ public class MoveOrb : MonoBehaviour
                 GetComponent<Rigidbody>().velocity = new Vector3(2, 0, 10);
                 StartCoroutine(StopLineChange2());
             }
-        }*/
+        }
     }
 
     IEnumerator StopLineChange()

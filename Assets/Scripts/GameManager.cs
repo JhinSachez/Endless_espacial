@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public Action<Game_State> OnGameStateChanged;
     public Game_State currentGameState;
+    
 
     public void ChangeGameState(Game_State _newGameState)
     {
