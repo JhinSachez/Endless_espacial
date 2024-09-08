@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,15 @@ using UnityEngine;
 public class Enemigo : MonoBehaviour
 {
 
-    [SerializeField] private int daño;
+    [SerializeField] private int damage;
 
-    private void OnTriggerEnter2D(Collider2D collider2D)
+    public void OnTriggerEnter(Collider collider)
     {
-        if (collider2D.CompareTag("Player"))
+        if (collider.CompareTag("Player"))
         {
-            collider2D.GetComponent<CombateJugador>().TomarDaño(daño);
+            collider.GetComponent<CombateJugador>().TakeDamage(damage);
             Destroy(gameObject);
         }
 
     }
-    
 }

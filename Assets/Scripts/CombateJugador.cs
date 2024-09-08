@@ -6,13 +6,13 @@ using System;
 public class CombateJugador : MonoBehaviour
 {
 
-    [SerializeField] private int Vida;
+    [SerializeField] public int Vida;
 
     public event EventHandler MuerteJugador;
 
-    public void TomarDaño(int CantidadDaño)
+    public void TakeDamage(int amountDamage)
     {
-        Vida -= CantidadDaño;
+        Vida -= amountDamage;
         if (Vida <= 0) 
         {
             MuerteJugador?.Invoke(this, EventArgs.Empty);
