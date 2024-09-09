@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public Action<Game_State> OnGameStateChanged;
     public Game_State currentGameState;
-    
+    public int puntosTotales = 0;
 
     public void ChangeGameState(Game_State _newGameState)
     {
@@ -40,8 +40,20 @@ public class GameManager : MonoBehaviour
             OnGameStateChanged.Invoke(currentGameState);
         }
     }
+    public void SumarPuntos(int puntos)
+    {
+        puntosTotales += puntos;
+        Debug.Log("Puntos totales: " + puntosTotales);
+    }
 
+    // Método para obtener la puntuación actual
+    public int ObtenerPuntuacion()
+    {
+        return puntosTotales;
+    }
 }
+
+
 
 public enum Game_State
 {
