@@ -28,31 +28,30 @@ public class MoveOrb : MonoBehaviour
 
         if (_distanceScore.GetComponent<DistanceScore>().distance >= 60)
         {
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 10);
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 5);
             
             if ((Input.GetKey("a")))
             {
-                GetComponent<Rigidbody>().velocity = new Vector3(-2, 0, 10);
+                GetComponent<Rigidbody>().velocity = new Vector3(-4, 0, 5);
                 StartCoroutine(StopLineChange2());
             }
         
             if ((Input.GetKey("d")))
             {
-                GetComponent<Rigidbody>().velocity = new Vector3(2, 0, 10);
+                GetComponent<Rigidbody>().velocity = new Vector3(4, 0, 5);
                 StartCoroutine(StopLineChange2());
             }
         }
     }
 
     IEnumerator StopLineChange()
-    {
-        yield return new WaitForSeconds(1);
+    { yield return new WaitForSeconds(2);
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 3);
     }
     
     IEnumerator StopLineChange2()
     {
         yield return new WaitForSeconds(1);
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 10);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 5);
     }
 }

@@ -16,7 +16,7 @@ public class Movecamera : MonoBehaviour
     {
         if (_distanceScore.GetComponent<DistanceScore>().distance >= 60)
         {
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 10);
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 5);
         }
     }
 }
