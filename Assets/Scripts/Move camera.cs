@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movecamera : MonoBehaviour
 {
+    public DistanceScore _distanceScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,9 @@ public class Movecamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_distanceScore.GetComponent<DistanceScore>().distance >= 60)
+        {
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 10);
+        }
     }
 }
