@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     // Start is called before the first frame update
-
+     bool isOnPlay;
     private CharacterController cc;
     bool canmove = true;
     Vector3 movement = Vector3.zero;
@@ -16,12 +16,25 @@ public class Movement : MonoBehaviour
     {
         cc = gameObject.GetComponent<CharacterController>();
         _distanceScore = gameObject.GetComponent<DistanceScore>();
+        
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
+        OnGameStateChanged(GameManager.GetInstance().currentGameState);
 
+    }
+    
+    
+
+    void OnGameStateChanged(Game_State _gameState)
+    {
+        isOnPlay = _gameState == Game_State.Play;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!isOnPlay) return;
+        
         Vector3 pos = gameObject.transform.position;
         if (!line.Equals(targetline))
         {
@@ -61,7 +74,7 @@ public class Movement : MonoBehaviour
         }
         cc.Move(movement * Time.deltaTime);
         movement.z = 3;
-        if (_distanceScore.distance >= 60)
+        if (_distanceScore.distance >= 200)
         {
             movement.z = 5;
         }

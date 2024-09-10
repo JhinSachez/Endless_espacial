@@ -14,7 +14,7 @@ public class Movecamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_distanceScore.GetComponent<DistanceScore>().distance >= 60)
+        if (_distanceScore.GetComponent<DistanceScore>().distance >= 200)
         {
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 5);
         }

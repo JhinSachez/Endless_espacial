@@ -18,8 +18,8 @@ public class MenuPausa : MonoBehaviour
     public void Pausa()
     {
         juegoPausado = true;
-        //GameManager.GetInstance().ChangeGameState(Game_State.Pause);
-        Time.timeScale = 0f;
+        GameManager.GetInstance().ChangeGameState(Game_State.Pause);
+        //Time.timeScale = 0f;
         botonPausa.SetActive(false);
         menuPausas.SetActive(true);
     }
@@ -27,8 +27,8 @@ public class MenuPausa : MonoBehaviour
     public void Reanudar()
     {
         juegoPausado = false;
-        //GameManager.GetInstance().ChangeGameState(Game_State.Play);
-        Time.timeScale = 1f;
+        GameManager.GetInstance().ChangeGameState(Game_State.Play);
+       // Time.timeScale = 1f;
         botonPausa.SetActive(true);
         menuPausas.SetActive(false);
     }
@@ -36,8 +36,8 @@ public class MenuPausa : MonoBehaviour
     public void Reiniciar()
     {
         juegoPausado = false;
-        Time.timeScale = 1f;
-        //GameManager.GetInstance().ChangeGameState(Game_State.Play);
+        //Time.timeScale = 1f;
+        GameManager.GetInstance().ChangeGameState(Game_State.Play);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
