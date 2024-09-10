@@ -1,45 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 using TMPro;
 
 public class Vaca : MonoBehaviour
 {
-    public Vector3 direction = Vector3.left;
-    public float speed = 5f;
-    public float lifetime = 10f;
-    public int puntos = 0;
-    public UIController uiController;
-    private bool yaColisionado = false; 
-
+    public float Speed = 1.0f;
+    bool isOnPlay;
+    public float Timer = 0;
+    public float timeToDeactivated = 1;
     void Start()
     {
-        // Busca automáticamente el UIController en la escena
-        uiController = FindObjectOfType<UIController>();
-
-        // Asegúrate de que existe un UIController
-        if (uiController == null)
-        {
-            Debug.LogError("No se encontró ningún UIController en la escena.");
-        }
-        
-        Destroy(gameObject, lifetime);
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
+        OnGameStateChange(GameManager.GetInstance().currentGameState);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnGameStateChange(Game_State _gs)
     {
-        if (other.gameObject.CompareTag("Player")&& !yaColisionado)
-        {
-            yaColisionado = true;
-            GameManager.GetInstance().SumarPuntos(1);
-            Destroy(gameObject);
-        }
+        isOnPlay = _gs == Game_State.Play;
     }
-    
+
+
     void Update()
     {
-        // Mueve el objeto en la dirección especificada a la velocidad determinada
-        transform.Translate(direction * speed * Time.deltaTime);
+        if (Timer > timeToDeactivated)
+        {
+            Timer = 0;
+        }
+
+        if (!isOnPlay) return;
+
+        transform.Translate(Vector3.back * Speed * Time.deltaTime);
+        Timer += Time.deltaTime;
+
+        if (Timer > timeToDeactivated)
+        {
+            gameObject.SetActive(false);
+        }
 
     }
 }

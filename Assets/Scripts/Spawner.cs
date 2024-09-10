@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    bool isOnPlay;
     public GameObject[] prefabsToSpawn;      // Array de prefabs a instanciar
     public float minSpawnInterval = 1f;      // Intervalo mínimo de tiempo entre spawns
     public float maxSpawnInterval = 6f;      // Intervalo máximo de tiempo entre spawns
@@ -11,12 +12,24 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        // Inicia la Coroutine para spawnear obstáculos
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
+        OnGameStateChange(GameManager.GetInstance().currentGameState);
         StartCoroutine(SpawnObstacles());
 
     }
 
-   
+    void OnGameStateChange(Game_State _gs)
+    {
+        isOnPlay = _gs == Game_State.Play;
+    }
+
+    private void Update()
+    {
+        if (!isOnPlay) return;
+
+
+    }
+
     IEnumerator SpawnObstacles()
     {
 

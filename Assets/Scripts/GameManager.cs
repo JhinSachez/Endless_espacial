@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public Action<Game_State> OnGameStateChanged;
-    public Game_State currentGameState;
+    public Game_State currentGameState = Game_State.Play;
     public int puntosTotales = 0;
 
     public void ChangeGameState(Game_State _newGameState)
