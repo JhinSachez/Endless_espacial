@@ -36,7 +36,7 @@ public class MenuPausa : MonoBehaviour
     public void Reiniciar()
     {
         juegoPausado = false;
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         //GameManager.GetInstance().ChangeGameState(Game_State.Play);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
