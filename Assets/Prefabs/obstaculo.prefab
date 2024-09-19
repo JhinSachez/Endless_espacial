@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2568033188920920101}
   - component: {fileID: 467226017045387727}
   - component: {fileID: 6577342849408599999}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: obstaculo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: -1}
   speed: 5
-  lifetime: 10
+  Timer: 0
+  timeToDeactivated: 5
 --- !u!114 &6577342849408599999
 MonoBehaviour:
   m_ObjectHideFlags: 0

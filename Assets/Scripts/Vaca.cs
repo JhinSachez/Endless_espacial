@@ -6,10 +6,11 @@ using TMPro;
 
 public class Vaca : MonoBehaviour
 {
-    public float Speed = 1.0f;
+    public float Speed = 200.0f;
     bool isOnPlay;
     public float Timer = 0;
-    public float timeToDeactivated = 1;
+    public float timeToDeactivated = 15;
+    private bool yaColisionado = false;
     void Start()
     {
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
@@ -21,6 +22,19 @@ public class Vaca : MonoBehaviour
         isOnPlay = _gs == Game_State.Play;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !yaColisionado)
+        {
+            yaColisionado = true;
+
+            // Aquí normalmente agregarías puntos al jugador, por ejemplo:
+            GameManager.GetInstance().SumarPuntos(1);
+
+            // En lugar de destruir el objeto, simplemente lo desactivamos
+            gameObject.SetActive(false);
+        }
+    }
 
     void Update()
     {
@@ -38,6 +52,6 @@ public class Vaca : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
+        
     }
 }
