@@ -5,41 +5,52 @@ using TMPro;
 
 public class Vaca : MonoBehaviour
 {
-    public Vector3 direction = Vector3.left;
-    public float speed = 5f;
-    public float lifetime = 10f;
-    public int puntos = 0;
-    public UIController uiController;
-    private bool yaColisionado = false; 
-
+    public float Speed = 200.0f;
+    bool isOnPlay;
+    public float Timer = 0;
+    public float timeToDeactivated = 15;
+    private bool yaColisionado = false;
     void Start()
     {
-        // Busca automáticamente el UIController en la escena
-        uiController = FindObjectOfType<UIController>();
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
+        OnGameStateChange(GameManager.GetInstance().currentGameState);
+    }
 
-        // Asegúrate de que existe un UIController
-        if (uiController == null)
-        {
-            Debug.LogError("No se encontró ningún UIController en la escena.");
-        }
-        
-        Destroy(gameObject, lifetime);
+    void OnGameStateChange(Game_State _gs)
+    {
+        isOnPlay = _gs == Game_State.Play;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")&& !yaColisionado)
+        if (other.CompareTag("Player") && !yaColisionado)
         {
             yaColisionado = true;
+
+            // Aquí normalmente agregarías puntos al jugador, por ejemplo:
             GameManager.GetInstance().SumarPuntos(1);
-            Destroy(gameObject);
+
+            // En lugar de destruir el objeto, simplemente lo desactivamos
+            gameObject.SetActive(false);
         }
     }
-    
+
     void Update()
     {
-        // Mueve el objeto en la dirección especificada a la velocidad determinada
-        transform.Translate(direction * speed * Time.deltaTime);
+        if (Timer > timeToDeactivated)
+        {
+            Timer = 0;
+        }
 
+        if (!isOnPlay) return;
+
+        transform.Translate(Vector3.back * Speed * Time.deltaTime);
+        Timer += Time.deltaTime;
+
+        if (Timer > timeToDeactivated)
+        {
+            gameObject.SetActive(false);
+        }
+        
     }
 }

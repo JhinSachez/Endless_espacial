@@ -118,8 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e8d0530757a864aa61c6213e199353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: -1}
-  speed: 5
-  lifetime: 10
-  puntos: 0
-  uiController: {fileID: 0}
+  Speed: 5
+  Timer: 0
+  timeToDeactivated: 15
