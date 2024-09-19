@@ -305,6 +305,9 @@ MonoBehaviour:
   numeroMinimoObjetosPorSerie: 1
   numeroMaximoObjetosPorSerie: 5
   tiempoEntreObjetosConsecutivos: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &130124704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -923,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 330844802}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01000005, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01000005, z: -0.0700016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1094,8 +1097,9 @@ MonoBehaviour:
   objectPool: {fileID: 1621690804}
   grupo: grupo1
   tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
+  tiempoMaximoEntreSpawns: 2
   tiempoExtra: 2
+  tiempoInactividad: 1
 --- !u!1 &466539408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,6 +1747,9 @@ MonoBehaviour:
   numeroMinimoObjetosPorSerie: 1
   numeroMaximoObjetosPorSerie: 5
   tiempoEntreObjetosConsecutivos: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2264,9 @@ MonoBehaviour:
   numeroMinimoObjetosPorSerie: 3
   numeroMaximoObjetosPorSerie: 8
   tiempoEntreObjetosConsecutivos: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1218202009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1150700706103025195, guid: 1f36c72b286c1394fa9e0cb8786b7769, type: 3}
-  poolSize: 10
+  poolSize: 20
 --- !u!4 &1218202011
 Transform:
   m_ObjectHideFlags: 0
@@ -2778,7 +2788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1564870448
 Transform:
   m_ObjectHideFlags: 0
@@ -2788,7 +2798,7 @@ Transform:
   m_GameObject: {fileID: 1564870445}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59, z: 37.07}
+  m_LocalPosition: {x: 0, y: 0.59, z: 15.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2971,7 +2981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 9183063279736514240, guid: c2e3a2c0fb0848a43b68f8a4d2294a69, type: 3}
-  poolSize: 5
+  poolSize: 10
 --- !u!4 &1621690805
 Transform:
   m_ObjectHideFlags: 0
@@ -3003,12 +3013,12 @@ PrefabInstance:
     - target: {fileID: 6148903899364921707, guid: ed871192e2af0e44c95bbb6c7d117b14,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6148903899364921707, guid: ed871192e2af0e44c95bbb6c7d117b14,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 6148903899364921707, guid: ed871192e2af0e44c95bbb6c7d117b14,
         type: 3}
@@ -3222,8 +3232,9 @@ MonoBehaviour:
   objectPool: {fileID: 1621690804}
   grupo: grupo2
   tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
+  tiempoMaximoEntreSpawns: 2
   tiempoExtra: 2
+  tiempoInactividad: 1
 --- !u!1 &1972878710
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,8 +3282,9 @@ MonoBehaviour:
   objectPool: {fileID: 1621690804}
   grupo: grupo3
   tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
+  tiempoMaximoEntreSpawns: 2
   tiempoExtra: 2
+  tiempoInactividad: 1
 --- !u!1 &1983700680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3301,7 +3313,7 @@ Transform:
   m_GameObject: {fileID: 1983700680}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01000005, z: -17.71}
+  m_LocalPosition: {x: 0, y: 0.01000005, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
