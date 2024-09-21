@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-using TMPro;
 
-public class Vaca : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    #region ruben iman
+
     public static bool _magnetOn = false;
     public float magnetSpeed;
     private GameObject _player;
-    #endregion
 
     #region paco
     public float Speed = 200.0f;
@@ -21,7 +20,6 @@ public class Vaca : MonoBehaviour
 
     void Start()
     {
-        // se busca al jugador 
         _player = GameObject.FindGameObjectWithTag("Player");
 
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
@@ -39,10 +37,9 @@ public class Vaca : MonoBehaviour
         {
             yaColisionado = true;
 
-            // se llama la funcion para aplicar el efecto del iman
             MagnetEffect(); 
 
-            // AquÃ­ normalmente agregarÃ­as puntos al jugador, por ejemplo:
+            // Aquí normalmente agregarías puntos al jugador, por ejemplo:
             GameManager.GetInstance().SumarPuntos(1);
 
             // En lugar de destruir el objeto, simplemente lo desactivamos
@@ -52,32 +49,23 @@ public class Vaca : MonoBehaviour
         }
     }
 
-    #region funciones para iman
     void MagnetEffect()
     {
-        
         transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
-
-
-        Invoke("EndEffect", 30f);
-
+        Invoke("EndEffect", 10f);
     }
 
     void EndEffect()
     {
         _magnetOn = false;
     }
-    #endregion
 
     void Update()
     {
-        // para efecto del iman, solo si esta activado
         if (_magnetOn)
         {
             MagnetEffect();
         }
-        // ---
-
         if (Timer > timeToDeactivated)
         {
             Timer = 0;
