@@ -11,7 +11,10 @@ public class Movement : MonoBehaviour
     Vector3 movement = Vector3.zero;
     private int line = 1;
     private int targetline = 1;
+    public float ReducirDuracion = 5;
+    public bool reducirisOn;
     private DistanceScore _distanceScore;
+    public int speed;
     void Start()
     {
         cc = gameObject.GetComponent<CharacterController>();
@@ -68,16 +71,16 @@ public class Movement : MonoBehaviour
             }
         }
         CheckInputs();
-        if (!cc.isGrounded)
+        if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
         {
-            movement.y = 0;
+            movement.y = 5;
+            if (_distanceScore.distance >= 50 && pos.y >= 5)
+            {
+                movement.y = 0;
+            }
         }
         cc.Move(movement * Time.deltaTime);
-        movement.z = 3;
-        if (_distanceScore.distance >= 200)
-        {
-            movement.z = 5;
-        }
+        Zmovimiento();
     }
 
     void CheckInputs()
@@ -93,6 +96,52 @@ public class Movement : MonoBehaviour
             targetline++;
             canmove = false;
             movement.x = 1.5f;
+        }
+    }
+
+    void Zmovimiento()
+    {
+        speed = 3;
+        movement.z = speed;
+        if (_distanceScore.distance >= 20 && reducirisOn == false)
+        {
+            speed = 5;
+            movement.z = speed;
+            if (_distanceScore.distance >= 40)
+            {
+                speed = 7;
+                movement.z = speed;
+            }
+        }
+        else
+        {
+            ReducirVelocidad();
+        }
+    }
+
+    public void ReducirVelocidad()
+    {
+        if (reducirisOn == true)
+        {
+            speed = 1;
+            ReducirDuracion -= Time.deltaTime;
+            movement.z = speed;
+            //camara.playerReducirIsOn = true;
+            if (ReducirDuracion <= 0)
+            {
+                ReducirDuracion = 5;
+                reducirisOn = false;
+                //camara.playerReducirIsOn = false;
+            }
+        }
+
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            reducirisOn = true;
         }
     }
 }
