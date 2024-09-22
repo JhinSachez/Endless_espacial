@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CoinDetector
   - PlayerBubble
+  - Escudo
+  - Enemigo
   layers:
   - Default
   - TransparentFX
