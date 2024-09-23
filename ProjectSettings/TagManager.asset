@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - CoinDetector
-  - PlayerBubble
+  - Undefined
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Obstaculo
+  - 
   - Water
   - UI
   - 

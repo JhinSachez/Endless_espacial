@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     private int targetline = 1;
     public float ReducirDuracion = 5;
     public bool reducirisOn;
+    private bool incrementarIsOn;
     private DistanceScore _distanceScore;
     public int speed;
     void Start()
@@ -103,7 +104,7 @@ public class Movement : MonoBehaviour
     {
         speed = 3;
         movement.z = speed;
-        if (_distanceScore.distance >= 20 && reducirisOn == false)
+        if (_distanceScore.distance >= 20 && reducirisOn == false && incrementarIsOn == false)
         {
             speed = 5;
             movement.z = speed;
@@ -113,9 +114,12 @@ public class Movement : MonoBehaviour
                 movement.z = speed;
             }
         }
-        else
+        else if(reducirisOn == true)
         {
             ReducirVelocidad();
+        }else if (incrementarIsOn == true)
+        {
+            IncrementarVelocidad();
         }
     }
 
@@ -126,22 +130,41 @@ public class Movement : MonoBehaviour
             speed = 1;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
-            //camara.playerReducirIsOn = true;
             if (ReducirDuracion <= 0)
             {
                 ReducirDuracion = 5;
                 reducirisOn = false;
-                //camara.playerReducirIsOn = false;
             }
         }
 
     }
+
+    public void IncrementarVelocidad()
+    {
+        if (incrementarIsOn == true)
+        {
+            speed = 10;
+            ReducirDuracion -= Time.deltaTime;
+            movement.z = speed;
+
+            if (ReducirDuracion <= 0)
+            {
+                ReducirDuracion = 5;
+                incrementarIsOn = false;
+            }
+        }
+    }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PowerUp"))
+        if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
+        }
+        
+        if (other.CompareTag("PowerUpIncrementar"))
+        {
+            incrementarIsOn = true;
         }
     }
 }
