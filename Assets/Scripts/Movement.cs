@@ -72,14 +72,14 @@ public class Movement : MonoBehaviour
             }
         }
         CheckInputs();
-        if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
+        /*if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
         {
             movement.y = 5;
             if (_distanceScore.distance >= 50 && pos.y >= 5)
             {
                 movement.y = 0;
             }
-        }
+        }*/
         cc.Move(movement * Time.deltaTime);
         Zmovimiento();
     }
@@ -111,6 +111,11 @@ public class Movement : MonoBehaviour
             if (_distanceScore.distance >= 40)
             {
                 speed = 7;
+                movement.z = speed;
+            }
+            if (_distanceScore.distance >= 60)
+            {
+                speed = 10;
                 movement.z = speed;
             }
         }

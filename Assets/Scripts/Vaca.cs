@@ -71,6 +71,7 @@ public class Vaca : MonoBehaviour
 
     void Update()
     {
+        if (!isOnPlay) return;
         // para efecto del iman, solo si esta activado
         if (_magnetOn)
         {
@@ -83,7 +84,7 @@ public class Vaca : MonoBehaviour
             Timer = 0;
         }
 
-        if (!isOnPlay) return;
+        
 
         transform.Translate(Vector3.back * Speed * Time.deltaTime);
         Timer += Time.deltaTime;
