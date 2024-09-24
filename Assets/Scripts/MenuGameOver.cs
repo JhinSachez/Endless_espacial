@@ -9,11 +9,23 @@ public class MenuGameOver : MonoBehaviour
 
     [SerializeField] private GameObject menuGameOver;
     private CombateJugador Vida;
+    bool isOnGameOver;
 
     private void Start()
     {
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
+        OnGameStateChange(GameManager.GetInstance().currentGameState);
+
         Vida = GameObject.FindGameObjectWithTag("Player").GetComponent<CombateJugador>();
-        Vida.MuerteJugador += ActivarMenu;
+        // Vida.MuerteJugador += ActivarMenu;
+    }
+
+    void OnGameStateChange(Game_State _gs)
+    {
+        if (_gs == Game_State.Game_Over)
+        {
+            menuGameOver.SetActive(true);
+        }
     }
 
     public void ActivarMenu(object sender, EventArgs e)
@@ -36,5 +48,10 @@ public class MenuGameOver : MonoBehaviour
     {
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
+    }
+
+    private void Update()
+    {
+        if (!isOnGameOver) return;
     }
 }

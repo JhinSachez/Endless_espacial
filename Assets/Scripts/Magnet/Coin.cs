@@ -54,14 +54,16 @@ public class Coin : MonoBehaviour
         transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
         Invoke("EndEffect", 10f);
     }
-
+       
     void EndEffect()
     {
         _magnetOn = false;
-    }
+    }  
 
     void Update()
     {
+
+        if (!isOnPlay) return;
         if (_magnetOn)
         {
             MagnetEffect();
@@ -70,9 +72,6 @@ public class Coin : MonoBehaviour
         {
             Timer = 0;
         }
-
-        if (!isOnPlay) return;
-
         transform.Translate(Vector3.back * Speed * Time.deltaTime);
         Timer += Time.deltaTime;
 

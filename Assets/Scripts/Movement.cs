@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+
+    #region Singleton
+    static Movement instance;
+
+    public static Movement GetInstance()
+    {
+        return instance;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
+
     // Start is called before the first frame update
-     bool isOnPlay;
+    bool isOnPlay;
     private CharacterController cc;
     bool canmove = true;
     Vector3 movement = Vector3.zero;
@@ -27,6 +43,7 @@ public class Movement : MonoBehaviour
     void OnGameStateChanged(Game_State _gameState)
     {
         isOnPlay = _gameState == Game_State.Play;
+
     }
 
     // Update is called once per frame
