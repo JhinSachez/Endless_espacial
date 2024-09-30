@@ -6,11 +6,11 @@ using UnityEngine;
 public class Enemigo : MonoBehaviour
 {
 
-    [SerializeField] private int damage;
+     public int damage;
 
     public void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag("Player") && PlayerShleld._isShieldOn == false)
         {
             collider.GetComponent<CombateJugador>().TakeDamage(damage);
             Destroy(gameObject);

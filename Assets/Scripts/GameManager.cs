@@ -18,11 +18,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
     }
-
-    public void Algo()
-    {
-
-    }
     #endregion
 
     public Action<Game_State> OnGameStateChanged;

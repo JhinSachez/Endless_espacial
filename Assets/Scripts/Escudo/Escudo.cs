@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Iman : MonoBehaviour
+public class Escudo : MonoBehaviour
 {
     bool isOnPlay;
-
     void Start()
     {
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
@@ -20,16 +19,14 @@ public class Iman : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Coin._magnetOn = true;
-            Destroy(gameObject); 
+            PlayerShleld._isShieldOn = true;
+            Destroy(gameObject);
         }
     }
-
 
     void Update()
     {
         if (!isOnPlay) return;
-
         transform.Translate(Vector3.back * 5f * Time.deltaTime);
     }
 }
