@@ -5,25 +5,45 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     private static Dictionary<string, bool> grupoActivo = new Dictionary<string, bool>();
+    private static Dictionary<string, bool> grupoMultipleActivo = new Dictionary<string, bool>(); // Para grupos múltiples
     private static bool spawnerSimpleActivo = false;
     private static float tiempoInactividad = 0f; // Tiempo de inactividad para spawners simples
 
-    public static void ComienzaGenerar(string grupo)
+    public static void ComienzaGenerar(string grupo, bool esGrupoMultiple = false)
     {
-        grupoActivo[grupo] = true;
+        if (esGrupoMultiple)
+        {
+            grupoMultipleActivo[grupo] = true;
+        }
+        else
+        {
+            grupoActivo[grupo] = true;
+        }
     }
 
-    public static void TerminaGenerar(string grupo)
+    public static void TerminaGenerar(string grupo, bool esGrupoMultiple = false)
     {
-        grupoActivo[grupo] = false;
+        if (esGrupoMultiple)
+        {
+            grupoMultipleActivo[grupo] = false;
+        }
+        else
+        {
+            grupoActivo[grupo] = false;
+        }
     }
 
-    public static bool PuedeGenerar(string grupo, bool esSpawnerSimple = false)
+    public static bool PuedeGenerar(string grupo, bool esSpawnerSimple = false, bool esGrupoMultiple = false)
     {
         if (esSpawnerSimple)
         {
-            // Solo permite generar si ningún spawner simple está activo y no ha pasado el tiempo de inactividad
+            // Permitir generación en spawners simples solo si ninguno está activo y no hay inactividad
             return !spawnerSimpleActivo && (!grupoActivo.ContainsKey(grupo) || !grupoActivo[grupo]) && tiempoInactividad <= 0;
+        }
+        else if (esGrupoMultiple)
+        {
+            // Permitir generación en grupos múltiples si el grupo no está activo
+            return !grupoMultipleActivo.ContainsKey(grupo) || !grupoMultipleActivo[grupo];
         }
 
         return !grupoActivo.ContainsKey(grupo) || !grupoActivo[grupo];

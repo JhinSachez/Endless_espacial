@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Reducir : MonoBehaviour
 {
+    public float Speed = 5f;
+    bool isOnPlay;
+    public float Timer = 0;
+    public float timeToDeactivated = 15;
+    private bool yaColisionado = false;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
+        OnGameStateChange(GameManager.GetInstance().currentGameState);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void OnGameStateChange(Game_State _gs)
     {
-        
+        isOnPlay = _gs == Game_State.Play;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -22,4 +28,18 @@ public class Reducir : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    // Update is called once per frame
+    void Update()
+    {
+        if (!isOnPlay) return;
+        
+        transform.Translate(Vector3.back * Speed * Time.deltaTime);
+        Timer += Time.deltaTime;
+
+        if (Timer > timeToDeactivated)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
 }

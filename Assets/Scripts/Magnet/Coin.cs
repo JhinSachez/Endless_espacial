@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour
     private GameObject _player;
 
     #region paco
-    public float Speed = 200.0f;
+    public float Speed = 5f;
     bool isOnPlay;
     public float Timer = 0;
     public float timeToDeactivated = 15;
@@ -39,7 +39,7 @@ public class Coin : MonoBehaviour
 
             MagnetEffect(); 
 
-            // Aquí normalmente agregarías puntos al jugador, por ejemplo:
+            // Aquï¿½ normalmente agregarï¿½as puntos al jugador, por ejemplo:
             GameManager.GetInstance().SumarPuntos(1);
 
             // En lugar de destruir el objeto, simplemente lo desactivamos
