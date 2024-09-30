@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnerVacas : MonoBehaviour
 {
-    bool isOnPlay;
+ bool isOnPlay;
     public ObjectPool objectPool; // Referencia al Object Pool
     
     public string grupo = "GrupoSerie";

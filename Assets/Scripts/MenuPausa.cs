@@ -9,26 +9,34 @@ public class MenuPausa : MonoBehaviour
     [SerializeField] private GameObject menuPausas;
     bool isOnPlay;
 
+    private bool juegoPausado = false;
+
     private void Start()
     {
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
     }
     public void Pausa()
     {
+        juegoPausado = true;
         GameManager.GetInstance().ChangeGameState(Game_State.Pause);
+        //Time.timeScale = 0f;
         botonPausa.SetActive(false);
         menuPausas.SetActive(true);
     }
 
     public void Reanudar()
     {
+        juegoPausado = false;
         GameManager.GetInstance().ChangeGameState(Game_State.Play);
+       // Time.timeScale = 1f;
         botonPausa.SetActive(true);
         menuPausas.SetActive(false);
     }
 
     public void Reiniciar()
     {
+        juegoPausado = false;
+        //Time.timeScale = 1f;
         GameManager.GetInstance().ChangeGameState(Game_State.Play);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

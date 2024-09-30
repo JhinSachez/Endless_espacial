@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    bool isOnPlay;
+       bool isOnPlay;
     public ObjectPool objectPool; // Referencia al Object Pool
     
     public string grupo = "GrupoSimple";
@@ -76,7 +76,4 @@ public class Spawner : MonoBehaviour
             generando = false;
         }
     }
-  
-    
-
 }

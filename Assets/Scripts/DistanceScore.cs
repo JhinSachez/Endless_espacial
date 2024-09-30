@@ -20,6 +20,6 @@ public class DistanceScore : MonoBehaviour
     private void Update()
     {
         distance = (startPos.transform.position.z + this.transform.position.z);
-        scoreText.text = distance.ToString("F1") + "M";
+        scoreText.text = distance.ToString("0") + "m";
     }
 }

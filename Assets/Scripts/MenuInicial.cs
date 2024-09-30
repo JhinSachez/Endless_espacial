@@ -5,7 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MenuInicial : MonoBehaviour
 {
-    public void CargarEscena(int index)
+    public void Jugar()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Salir()
+    {
+        Debug.Log("Saliendo...");
+        Application.Quit();
+    }
+
+
+   /* public void CargarEscena(int index)
     {
         SceneManager.LoadScene(index);
     }
@@ -14,4 +26,5 @@ public class MenuInicial : MonoBehaviour
     {
         SceneManager.LoadScene(nombre);
     }
+   */
 }
