@@ -213,7 +213,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ManuInicial
+          m_StringArgument: MenuInicial
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &24433112
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238922654}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75b3862b2616f8a4184deb3de1c4103d, type: 3}
   m_Name: 
@@ -3682,6 +3682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vida: 10
+  muerteJugador: 0
 --- !u!54 &1983700686
 Rigidbody:
   m_ObjectHideFlags: 0
