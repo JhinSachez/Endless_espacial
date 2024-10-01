@@ -59,9 +59,9 @@ public class Movement : MonoBehaviour
         Vector3 pos = gameObject.transform.position;
         if (!line.Equals(targetline))
         {
-            if (targetline == 0 && pos.x < -2)
+            if (targetline == 0 && pos.x < -1)
             {
-                gameObject.transform.position = new Vector3(-2f, pos.y, 3);
+                gameObject.transform.position = new Vector3(-1f, pos.y, 3);
                 line = targetline;
                 canmove = true;
                 movement.x = 0;
@@ -80,9 +80,9 @@ public class Movement : MonoBehaviour
                     canmove = true;
                     movement.x = 0;
                 }
-            }else if (targetline == 2 && pos.x > 2)
+            }else if (targetline == 2 && pos.x > 1)
             {
-                gameObject.transform.position = new Vector3(2f, pos.y, 3);
+                gameObject.transform.position = new Vector3(1f, pos.y, 3);
                 line = targetline;
                 canmove = true;
                 movement.x = 0;
@@ -107,13 +107,13 @@ public class Movement : MonoBehaviour
         {
             targetline--;
             canmove = false;
-            movement.x = -1.5f;
+            movement.x = -5;
         }
         if (Input.GetKeyDown(KeyCode.D) && canmove && line <2 )
         {
             targetline++;
             canmove = false;
-            movement.x = 1.5f;
+            movement.x = 5;
         }
     }
 
