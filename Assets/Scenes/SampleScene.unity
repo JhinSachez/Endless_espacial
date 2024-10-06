@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8320700726970906904, guid: 861310011ac5cc24ab29b6d662a6864f, type: 3}
-  poolSize: 1
+  poolSize: 3
 --- !u!1 &121313095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,16 +2110,16 @@ MonoBehaviour:
   poolItems:
   - prefab: {fileID: 8179546653463965547, guid: 034bea62c60daf94bb7bcc734abae87d,
       type: 3}
-    poolSize: 1
+    poolSize: 3
   - prefab: {fileID: 5114543990319265558, guid: 9db1c7bda80fdbf47b217aa2499d48c0,
       type: 3}
-    poolSize: 1
+    poolSize: 3
   - prefab: {fileID: 7713196579184825078, guid: a80ceb5a03473564e93c4fc41040dbbc,
       type: 3}
-    poolSize: 1
+    poolSize: 3
   - prefab: {fileID: 8320700726970906904, guid: 861310011ac5cc24ab29b6d662a6864f,
       type: 3}
-    poolSize: 1
+    poolSize: 3
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,14 +2293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grupo: GrupoMultiple
-  pools:
-  - {fileID: 894330737}
-  - {fileID: 83106220}
-  - {fileID: 1291316454}
-  minSpawnInterval: 1
-  maxSpawnInterval: 3
+  objectPoolMultiple: {fileID: 827756311}
+  minSpawnInterval: 24
+  maxSpawnInterval: 42
   randomizePools: 1
+  spawnDelay: 15
+  cooldownTime: 5
 --- !u!1 &894330736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,7 +2329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5114543990319265558, guid: 9db1c7bda80fdbf47b217aa2499d48c0, type: 3}
-  poolSize: 1
+  poolSize: 3
 --- !u!4 &894330738
 Transform:
   m_ObjectHideFlags: 0
@@ -2761,7 +2759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8179546653463965547, guid: 034bea62c60daf94bb7bcc734abae87d, type: 3}
-  poolSize: 1
+  poolSize: 3
 --- !u!4 &1291316455
 Transform:
   m_ObjectHideFlags: 0
@@ -3231,14 +3229,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grupo: GrupoMultiple
-  pools:
-  - {fileID: 894330737}
-  - {fileID: 83106220}
-  - {fileID: 1291316454}
-  minSpawnInterval: 1
-  maxSpawnInterval: 3
+  objectPoolMultiple: {fileID: 827756311}
+  minSpawnInterval: 24
+  maxSpawnInterval: 42
   randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
 --- !u!1 &1501357171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3378,7 +3374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReducirDuracion: 5
-  reducirisOn: 0
+  reducirIsOn: 0
   speed: 0
 --- !u!143 &1564870453
 CharacterController:
@@ -3686,14 +3682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grupo: GrupoMultiple
-  pools:
-  - {fileID: 894330737}
-  - {fileID: 83106220}
-  - {fileID: 1291316454}
-  minSpawnInterval: 1
-  maxSpawnInterval: 3
+  objectPoolMultiple: {fileID: 827756311}
+  minSpawnInterval: 24
+  maxSpawnInterval: 42
   randomizePools: 1
+  spawnDelay: 12
+  cooldownTime: 5
 --- !u!1 &1732538583
 GameObject:
   m_ObjectHideFlags: 0
