@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    #region Singleton
+        #region Singleton
     static Movement instance;
 
     public static Movement GetInstance()
@@ -19,101 +19,92 @@ public class Movement : MonoBehaviour
     }
     #endregion
 
-
-    // Start is called before the first frame update
+    // Variables de movimiento y control
     bool isOnPlay;
     private CharacterController cc;
-    bool canmove = true;
+    bool canMove = true;
     Vector3 movement = Vector3.zero;
     private int line = 1;
-    private int targetline = 1;
+    private int targetLine = 1;
     public float ReducirDuracion = 5;
-    public bool reducirisOn;
+    public bool reducirIsOn;
     private bool incrementarIsOn;
     private DistanceScore _distanceScore;
     public int speed;
+
     void Start()
     {
         cc = gameObject.GetComponent<CharacterController>();
         _distanceScore = gameObject.GetComponent<DistanceScore>();
-        
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
         OnGameStateChanged(GameManager.GetInstance().currentGameState);
-
     }
-    
-    
 
     void OnGameStateChanged(Game_State _gameState)
     {
         isOnPlay = _gameState == Game_State.Play;
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (!isOnPlay) return;
-        
+
         Vector3 pos = gameObject.transform.position;
-        if (!line.Equals(targetline))
+
+        // Movimiento lateral entre líneas
+        if (!line.Equals(targetLine))
         {
-            if (targetline == 0 && pos.x < -2)
+            if (targetLine == 0 && pos.x < -2)
             {
                 gameObject.transform.position = new Vector3(-2f, pos.y, 3);
-                line = targetline;
-                canmove = true;
+                line = targetLine;
+                canMove = true;
                 movement.x = 0;
-            } else if (targetline == 1 && (pos.x > 0 || pos.x < 0))
+            }
+            else if (targetLine == 1 && (pos.x > 0 || pos.x < 0))
             {
                 if (line == 0 && pos.x > 0)
                 {
                     gameObject.transform.position = new Vector3(0, pos.y, 3);
-                    line = targetline;
-                    canmove = true;
-                    movement.x = 0;
-                } else if (line == 2 && pos.x < 0)
-                {
-                    gameObject.transform.position = new Vector3(0, pos.y, 3);
-                    line = targetline;
-                    canmove = true;
+                    line = targetLine;
+                    canMove = true;
                     movement.x = 0;
                 }
-            }else if (targetline == 2 && pos.x > 2)
+                else if (line == 2 && pos.x < 0)
+                {
+                    gameObject.transform.position = new Vector3(0, pos.y, 3);
+                    line = targetLine;
+                    canMove = true;
+                    movement.x = 0;
+                }
+            }
+            else if (targetLine == 2 && pos.x > 2)
             {
                 gameObject.transform.position = new Vector3(2f, pos.y, 3);
-                line = targetline;
-                canmove = true;
+                line = targetLine;
+                canMove = true;
                 movement.x = 0;
             }
         }
+
         CheckInputs();
-        /*if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
-        {
-            movement.y = 5;
-            if (_distanceScore.distance >= 50 && pos.y >= 5)
-            {
-                movement.y = 0;
-            }
-        }*/
-        cc.Move(movement * Time.deltaTime);
+        cc.Move(movement * Time.deltaTime); // Mueve al personaje en el eje Z.
         Zmovimiento();
     }
 
     void CheckInputs()
     {
-        if (Input.GetKeyDown(KeyCode.A) && canmove && line > 0)
+        if (Input.GetKeyDown(KeyCode.A) && canMove && line > 0)
         {
-            targetline--;
-            canmove = false;
-            movement.x = -1.5f;
+            targetLine--;
+            canMove = false;
+            movement.x = -1.5f; // Mueve a la izquierda
         }
-        if (Input.GetKeyDown(KeyCode.D) && canmove && line <2 )
+        if (Input.GetKeyDown(KeyCode.D) && canMove && line < 2)
         {
-            targetline++;
-            canmove = false;
-            movement.x = 1.5f;
+            targetLine++;
+            canMove = false;
+            movement.x = 1.5f; // Mueve a la derecha
         }
     }
 
@@ -121,25 +112,18 @@ public class Movement : MonoBehaviour
     {
         speed = 3;
         movement.z = speed;
-        if (_distanceScore.distance >= 20 && reducirisOn == false && incrementarIsOn == false)
+
+        if (_distanceScore.distance >= 20 && !reducirIsOn && !incrementarIsOn)
         {
             speed = 5;
-            movement.z = speed;
-            if (_distanceScore.distance >= 40)
-            {
-                speed = 7;
-                movement.z = speed;
-            }
-            if (_distanceScore.distance >= 60)
-            {
-                speed = 10;
-                movement.z = speed;
-            }
+            if (_distanceScore.distance >= 40) speed = 7;
+            if (_distanceScore.distance >= 60) speed = 10;
         }
-        else if(reducirisOn == true)
+        else if (reducirIsOn)
         {
             ReducirVelocidad();
-        }else if (incrementarIsOn == true)
+        }
+        else if (incrementarIsOn)
         {
             IncrementarVelocidad();
         }
@@ -147,23 +131,23 @@ public class Movement : MonoBehaviour
 
     public void ReducirVelocidad()
     {
-        if (reducirisOn == true)
+        if (reducirIsOn)
         {
             speed = 1;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
+
             if (ReducirDuracion <= 0)
             {
                 ReducirDuracion = 5;
-                reducirisOn = false;
+                reducirIsOn = false;
             }
         }
-
     }
 
     public void IncrementarVelocidad()
     {
-        if (incrementarIsOn == true)
+        if (incrementarIsOn)
         {
             speed = 10;
             ReducirDuracion -= Time.deltaTime;
@@ -176,17 +160,26 @@ public class Movement : MonoBehaviour
             }
         }
     }
-    
+
+    // Método para colisiones con PowerUps y Monedas
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PowerUpRedicir"))
         {
-            reducirisOn = true;
+            reducirIsOn = true;
         }
-        
+
         if (other.CompareTag("PowerUpIncrementar"))
         {
             incrementarIsOn = true;
+        }
+
+        if (other.CompareTag("Coin"))
+        {
+            // Lógica para recolectar la moneda
+            Debug.Log("Moneda recolectada");
+            GameManager.GetInstance().SumarPuntos(1);
+            other.gameObject.SetActive(false);  // Desactivar la moneda
         }
     }
 }

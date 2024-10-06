@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8360053251684209220}
   m_Layer: 0
   m_Name: vaca
-  m_TagString: Untagged
+  m_TagString: coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,5 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magnetSpeed: 1
   Speed: 5
-  Timer: 0
   timeToDeactivated: 15
