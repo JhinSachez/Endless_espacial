@@ -1,65 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Movement : MonoBehaviour
+
+public class TouchMovement : MonoBehaviour
 {
-
-    #region Singleton
-    static Movement instance;
-
-    public static Movement GetInstance()
-    {
-        return instance;
-    }
-
-    private void Awake()
-    {
-        instance = this;
-    }
-    #endregion
-
-
-    // Start is called before the first frame update
     private Vector2 fingerDownPos;
     private Vector2 fingerUpPos;
     
-    bool isOnPlay;
     private CharacterController cc;
     bool canmove = true;
     Vector3 movement = Vector3.zero;
     private int line = 1;
     private int targetline = 1;
-    public float ReducirDuracion = 5;
-    public bool reducirisOn;
-    private bool incrementarIsOn;
-    private DistanceScore _distanceScore;
-    public int speed;
-    
     public bool detectSwipeAfterRelease = false;
 
     public float SWIPE_THRESHOLD = 20f;
-    void Start()
+
+    private void Start()
     {
         cc = gameObject.GetComponent<CharacterController>();
-        _distanceScore = gameObject.GetComponent<DistanceScore>();
-        
-        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
-        OnGameStateChanged(GameManager.GetInstance().currentGameState);
-
-    }
-    
-    
-
-    void OnGameStateChanged(Game_State _gameState)
-    {
-        isOnPlay = _gameState == Game_State.Play;
-
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
+
         foreach (Touch touch in Input.touches) {
             if (touch.phase == TouchPhase.Began) {
                 fingerUpPos = touch.position;
@@ -80,8 +48,6 @@ public class Movement : MonoBehaviour
                 DetectSwipe ();
             }
         }
-        
-        if (!isOnPlay) return;
         
         Vector3 pos = gameObject.transform.position;
         if (!line.Equals(targetline))
@@ -115,24 +81,14 @@ public class Movement : MonoBehaviour
                 movement.x = 0;
             }
         }
-        CheckInputs();
-        /*if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
-        {
-            movement.y = 5;
-            if (_distanceScore.distance >= 50 && pos.y >= 5)
-            {
-                movement.y = 0;
-            }
-        }*/
         cc.Move(movement * Time.deltaTime);
-        Zmovimiento();
     }
-    
+
     void DetectSwipe ()
     {
 		
         if (VerticalMoveValue () > SWIPE_THRESHOLD && VerticalMoveValue () > HorizontalMoveValue ()) {
-            //Debug.Log ("Vertical Swipe Detected!");
+            Debug.Log ("Vertical Swipe Detected!");
             if (fingerDownPos.y - fingerUpPos.y > 0) {
                 OnSwipeUp ();
             } else if (fingerDownPos.y - fingerUpPos.y < 0) {
@@ -141,7 +97,7 @@ public class Movement : MonoBehaviour
             fingerUpPos = fingerDownPos;
 
         } else if (HorizontalMoveValue () > SWIPE_THRESHOLD && HorizontalMoveValue () > VerticalMoveValue ()) {
-            //Debug.Log ("Horizontal Swipe Detected!");
+            Debug.Log ("Horizontal Swipe Detected!");
             if (fingerDownPos.x - fingerUpPos.x > 0) {
                 OnSwipeRight ();
             } else if (fingerDownPos.x - fingerUpPos.x < 0) {
@@ -150,10 +106,10 @@ public class Movement : MonoBehaviour
             fingerUpPos = fingerDownPos;
 
         } else {
-            //Debug.Log ("No Swipe Detected!");
+            Debug.Log ("No Swipe Detected!");
         }
     }
-    
+
     float VerticalMoveValue ()
     {
         return Mathf.Abs (fingerDownPos.y - fingerUpPos.y);
@@ -183,6 +139,7 @@ public class Movement : MonoBehaviour
             movement.x = -5;
         }
     }
+
     void OnSwipeRight ()
     {
         if (canmove && line <2 )
@@ -192,94 +149,4 @@ public class Movement : MonoBehaviour
             movement.x = 5;
         }
     }
-
-    void CheckInputs()
-    {
-        if (Input.GetKeyDown(KeyCode.A) && canmove && line > 0)
-        {
-            targetline--;
-            canmove = false;
-            movement.x = -5;
-        }
-        if (Input.GetKeyDown(KeyCode.D) && canmove && line <2 )
-        {
-            targetline++;
-            canmove = false;
-            movement.x = 5;
-        }
-    }
-
-    void Zmovimiento()
-    {
-        speed = 10;
-        movement.z = speed;
-        if (_distanceScore.distance >= 250 && reducirisOn == false && incrementarIsOn == false)
-        {
-            speed = 13;
-            movement.z = speed;
-            if (_distanceScore.distance >= 400)
-            {
-                speed = 16;
-                movement.z = speed;
-            }
-            if (_distanceScore.distance >= 550)
-            {
-                speed = 18;
-                movement.z = speed;
-            }
-        }
-        else if(reducirisOn == true)
-        {
-            ReducirVelocidad();
-        }else if (incrementarIsOn == true)
-        {
-            IncrementarVelocidad();
-        }
-    }
-
-    public void ReducirVelocidad()
-    {
-        if (reducirisOn == true)
-        {
-            speed = 1;
-            ReducirDuracion -= Time.deltaTime;
-            movement.z = speed;
-            if (ReducirDuracion <= 0)
-            {
-                ReducirDuracion = 5;
-                reducirisOn = false;
-            }
-        }
-
-    }
-
-    public void IncrementarVelocidad()
-    {
-        if (incrementarIsOn == true)
-        {
-            speed = 10;
-            ReducirDuracion -= Time.deltaTime;
-            movement.z = speed;
-
-            if (ReducirDuracion <= 0)
-            {
-                ReducirDuracion = 5;
-                incrementarIsOn = false;
-            }
-        }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("PowerUpRedicir"))
-        {
-            reducirisOn = true;
-        }
-        
-        if (other.CompareTag("PowerUpIncrementar"))
-        {
-            incrementarIsOn = true;
-        }
-    }
-    
 }

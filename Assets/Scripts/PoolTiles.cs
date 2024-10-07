@@ -7,7 +7,7 @@ public class PoolTiles : MonoBehaviour
     List<GameObject> tiles = new List<GameObject>();
    public List<GameObject> tileprefab = new List<GameObject>();
     bool isOnPlay;
-     public float timer = 3;
+     public float timer = 1;
     float timerrestart;
     public float DistanciaSpawn;
     public Vector3 nextpos;
@@ -22,7 +22,7 @@ public class PoolTiles : MonoBehaviour
             }
         }
 
-        GameObject newTile = Instantiate(tileprefab[Random.Range(0,tileprefab.Count)], Vector3.zero, Quaternion.identity);
+        GameObject newTile = Instantiate(tileprefab[Random.Range(0,tileprefab.Count)], Vector3.zero, Quaternion.Euler(new Vector3(0,-90,0)));
         tiles.Add(newTile);
         return newTile;
     }
@@ -38,7 +38,7 @@ public class PoolTiles : MonoBehaviour
 
         for(int i = 0; i < tileprefab.Count; i++)
         {
-            GameObject newTile = Instantiate(tileprefab[i], Vector3.zero, Quaternion.identity);
+            GameObject newTile = Instantiate(tileprefab[i], Vector3.zero, Quaternion.Euler(new Vector3(0,-90,0)));
             tiles.Add(newTile);
             newTile.SetActive(false);
         }
