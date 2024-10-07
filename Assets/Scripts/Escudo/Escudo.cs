@@ -22,6 +22,8 @@ public class Escudo : MonoBehaviour
             PlayerShleld._isShieldOn = true;
             Destroy(gameObject);
         }
+
+        Debug.Log("escudo activo");
     }
 
     void Update()
