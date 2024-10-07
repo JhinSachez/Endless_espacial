@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: f5db60bfb81458a41926d919b2d418ba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8647966157251916864}
-  - component: {fileID: 6757023820797109945}
   - component: {fileID: 318521367331668487}
   - component: {fileID: 734613761220195203}
   m_Layer: 0
@@ -118,19 +117,6 @@ Transform:
   - {fileID: 1233937996309218586}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6757023820797109945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8179546653463965547}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600990d3910f3e047bb06125c492b896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinDetectorObj: {fileID: 0}
 --- !u!65 &318521367331668487
 BoxCollider:
   m_ObjectHideFlags: 0

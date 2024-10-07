@@ -8,7 +8,7 @@ public class Reducir : MonoBehaviour
     bool isOnPlay;
     public float Timer = 0;
     public float timeToDeactivated = 15;
-    private bool yaColisionado = false;
+   
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class Reducir : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
+            Debug.Log("pene");
         }
     }
     // Update is called once per frame

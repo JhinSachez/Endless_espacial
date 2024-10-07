@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
     private int targetline = 1;
     public float ReducirDuracion = 5;
     public bool reducirisOn;
-    private bool incrementarIsOn;
+    public bool incrementarIsOn;
     private DistanceScore _distanceScore;
     public int speed;
     
@@ -239,7 +239,7 @@ public class Movement : MonoBehaviour
 
     public void ReducirVelocidad()
     {
-        if (reducirisOn == true)
+        if (reducirisOn)
         {
             speed = 1;
             ReducirDuracion -= Time.deltaTime;
@@ -255,9 +255,9 @@ public class Movement : MonoBehaviour
 
     public void IncrementarVelocidad()
     {
-        if (incrementarIsOn == true)
+        if (incrementarIsOn)
         {
-            speed = 10;
+            speed = 30;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
 
@@ -280,6 +280,14 @@ public class Movement : MonoBehaviour
         {
             incrementarIsOn = true;
         }
+        
+        if (other.CompareTag("coin"))
+        {
+            // Lógica para recolectar la moneda
+            GameManager.GetInstance().SumarPuntos(1);
+            other.gameObject.SetActive(false);  // Desactivar la moneda
+        }
+        
     }
     
 }

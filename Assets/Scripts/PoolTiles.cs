@@ -62,7 +62,6 @@ public class PoolTiles : MonoBehaviour
                GameObject tile = ObtenerTile();
                 tile.transform.position = nextpos;
                 tile.SetActive(true);
-                print("aaaaa" + tile.name);
                 nextpos += new Vector3(0, 0, DistanciaSpawn);
                 timer = timerrestart;
                 if(tiles.Count > 15)
