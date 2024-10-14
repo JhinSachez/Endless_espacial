@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour
     public static bool _magnetOn = false;
     public float magnetSpeed;
     private GameObject _player;
+    public bool detector;
 
     #region paco
     public float Speed = 200.0f;
@@ -24,6 +25,8 @@ public class Coin : MonoBehaviour
 
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
         OnGameStateChange(GameManager.GetInstance().currentGameState);
+
+        detector = false;
     }
 
     void OnGameStateChange(Game_State _gs)
@@ -33,7 +36,12 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !yaColisionado)
+        if (other.CompareTag("CoinDetector"))
+        {
+            detector = true;
+        }
+
+            if (other.CompareTag("Player") && !yaColisionado)
         {
             yaColisionado = true;
 
@@ -51,8 +59,14 @@ public class Coin : MonoBehaviour
 
     void MagnetEffect()
     {
-        transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
-        Invoke("EndEffect", 10f);
+        float distancia = Vector3.Distance(_player.transform.position, this.transform.position);
+
+        if (distancia <= 1f)
+        {
+            transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
+
+        }
+        Invoke("EndEffect", 20f);
     }
        
     void EndEffect()

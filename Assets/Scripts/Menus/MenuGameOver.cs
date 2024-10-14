@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class MenuGameOver : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class MenuGameOver : MonoBehaviour
     [SerializeField] private GameObject menuGameOver;
     private CombateJugador Vida;
     bool isOnGameOver;
+    public DistanceScore distanceScore;
+    public TextMeshProUGUI distanceText;
+    
+    public TextMeshProUGUI vacaText;   
 
     private void Start()
     {
@@ -24,6 +29,8 @@ public class MenuGameOver : MonoBehaviour
     {
         if (_gs == Game_State.Game_Over)
         {
+            distanceText.text = distanceScore.scoreText.text;
+            vacaText.text = GameManager.GetInstance().ObtenerPuntuacion().ToString();
             menuGameOver.SetActive(true);
         }
     }
