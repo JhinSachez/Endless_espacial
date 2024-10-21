@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolTiles : MonoBehaviour
@@ -11,6 +13,9 @@ public class PoolTiles : MonoBehaviour
     float timerrestart;
     public float DistanciaSpawn;
     public Vector3 nextpos;
+    public Movement powerup;
+    public int _CantidadPowerUps;
+    
 
     GameObject ObtenerTile()
     {
@@ -29,8 +34,6 @@ public class PoolTiles : MonoBehaviour
 
     void Start()
     {
-       
-
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
         OnGameStateChanged(GameManager.GetInstance().currentGameState);
 
@@ -56,6 +59,40 @@ public class PoolTiles : MonoBehaviour
     {
         if (isOnPlay)
         {
+    
+            switch(_CantidadPowerUps)
+            {
+                case 1:
+                timer = 2f;
+                break;
+                
+                case 2: timer = 2.5f;
+                break;
+                
+            }
+            
+            switch(_CantidadPowerUps)
+            {
+                case 1:
+                    timer = 0.8f;
+                    break;
+                
+                case 2: timer = 0.8f;
+                    break;
+                
+            }
+            /*if (powerup.incrementarIsOn == true)
+            {
+                timer = 0.8f;
+                timer -= Time.deltaTime;
+            }
+
+            if (powerup.reducirisOn)
+            {
+                timer = 1.5f;
+                timer -= Time.deltaTime;
+            } */
+            
             timer -= Time.deltaTime;
             if(timer <= 0)
             {

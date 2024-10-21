@@ -241,7 +241,7 @@ public class Movement : MonoBehaviour
     {
         if (reducirisOn)
         {
-            speed = 1;
+            speed = 8;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
             if (ReducirDuracion <= 0)
@@ -257,7 +257,7 @@ public class Movement : MonoBehaviour
     {
         if (incrementarIsOn)
         {
-            speed = 30;
+            speed = 23;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
 
@@ -274,11 +274,13 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
+            GetComponent<PoolTiles>()._CantidadPowerUps++;
         }
         
         if (other.CompareTag("PowerUpIncrementar"))
         {
             incrementarIsOn = true;
+            Debug.Log("Incrementar activado");
         }
         
         if (other.CompareTag("coin"))

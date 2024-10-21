@@ -26,7 +26,7 @@ public class Reducir : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameObject.SetActive(false);
-            Debug.Log("pene");
+           
         }
     }
     // Update is called once per frame
