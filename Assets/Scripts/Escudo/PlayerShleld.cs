@@ -11,19 +11,19 @@ public class PlayerShleld : MonoBehaviour
 
     void Start()
     {
-        _isShieldOn = false;  
+        _isShieldOn = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_isShieldOn && other.CompareTag("Enemigo"))
+        if (_isShieldOn && other.CompareTag("Enemigo"))
         {
             //escudo.SetActive(false);
             _isShieldOn = false;
             Debug.Log(_isShieldOn);
         }
 
-        
+
     }
 
     void Update()

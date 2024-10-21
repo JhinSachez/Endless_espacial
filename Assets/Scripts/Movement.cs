@@ -274,7 +274,7 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
-            GetComponent<PoolTiles>()._CantidadPowerUps++;
+          
         }
         
         if (other.CompareTag("PowerUpIncrementar"))

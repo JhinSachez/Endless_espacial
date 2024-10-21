@@ -19,7 +19,7 @@ public class UIController : MonoBehaviour
     // Método para actualizar el TextMeshPro con la puntuación actual
     public void ActualizarPuntuacion(int puntos)
     {
-        textoPuntuacion.text = "Puntos: " + GameManager.GetInstance().ObtenerPuntuacion().ToString();
+        textoPuntuacion.text = "Vacas: " + GameManager.GetInstance().ObtenerPuntuacion().ToString();
     }
     
     void OnGameStateChange(Game_State _gs)
