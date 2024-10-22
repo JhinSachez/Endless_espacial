@@ -17,10 +17,10 @@ public class Escudo : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             PlayerShleld._isShieldOn = true;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         Debug.Log("escudo activo");
