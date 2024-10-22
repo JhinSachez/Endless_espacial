@@ -21,6 +21,9 @@ public class Movement : MonoBehaviour
 
 
     // Start is called before the first frame update
+    private Vector2 fingerDownPos;
+    private Vector2 fingerUpPos;
+    
     bool isOnPlay;
     private CharacterController cc;
     bool canmove = true;
@@ -29,9 +32,13 @@ public class Movement : MonoBehaviour
     private int targetline = 1;
     public float ReducirDuracion = 5;
     public bool reducirisOn;
-    private bool incrementarIsOn;
+    public bool incrementarIsOn;
     private DistanceScore _distanceScore;
     public int speed;
+    
+    public bool detectSwipeAfterRelease = false;
+
+    public float SWIPE_THRESHOLD = 20f;
     void Start()
     {
         cc = gameObject.GetComponent<CharacterController>();
@@ -53,15 +60,35 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (Touch touch in Input.touches) {
+            if (touch.phase == TouchPhase.Began) {
+                fingerUpPos = touch.position;
+                fingerDownPos = touch.position;
+            }
 
+            //Detects Swipe while finger is still moving on screen
+            if (touch.phase == TouchPhase.Moved) {
+                if (!detectSwipeAfterRelease) {
+                    fingerDownPos = touch.position;
+                    DetectSwipe ();
+                }
+            }
+
+            //Detects swipe after finger is released from screen
+            if (touch.phase == TouchPhase.Ended) {
+                fingerDownPos = touch.position;
+                DetectSwipe ();
+            }
+        }
+        
         if (!isOnPlay) return;
         
         Vector3 pos = gameObject.transform.position;
         if (!line.Equals(targetline))
         {
-            if (targetline == 0 && pos.x < -2)
+            if (targetline == 0 && pos.x < -1)
             {
-                gameObject.transform.position = new Vector3(-2f, pos.y, 3);
+                gameObject.transform.position = new Vector3(-1f, pos.y, 3);
                 line = targetline;
                 canmove = true;
                 movement.x = 0;
@@ -80,9 +107,9 @@ public class Movement : MonoBehaviour
                     canmove = true;
                     movement.x = 0;
                 }
-            }else if (targetline == 2 && pos.x > 2)
+            }else if (targetline == 2 && pos.x > 1)
             {
-                gameObject.transform.position = new Vector3(2f, pos.y, 3);
+                gameObject.transform.position = new Vector3(1f, pos.y, 3);
                 line = targetline;
                 canmove = true;
                 movement.x = 0;
@@ -100,6 +127,71 @@ public class Movement : MonoBehaviour
         cc.Move(movement * Time.deltaTime);
         Zmovimiento();
     }
+    
+    void DetectSwipe ()
+    {
+		
+        if (VerticalMoveValue () > SWIPE_THRESHOLD && VerticalMoveValue () > HorizontalMoveValue ()) {
+            //Debug.Log ("Vertical Swipe Detected!");
+            if (fingerDownPos.y - fingerUpPos.y > 0) {
+                OnSwipeUp ();
+            } else if (fingerDownPos.y - fingerUpPos.y < 0) {
+                OnSwipeDown ();
+            }
+            fingerUpPos = fingerDownPos;
+
+        } else if (HorizontalMoveValue () > SWIPE_THRESHOLD && HorizontalMoveValue () > VerticalMoveValue ()) {
+            //Debug.Log ("Horizontal Swipe Detected!");
+            if (fingerDownPos.x - fingerUpPos.x > 0) {
+                OnSwipeRight ();
+            } else if (fingerDownPos.x - fingerUpPos.x < 0) {
+                OnSwipeLeft ();
+            }
+            fingerUpPos = fingerDownPos;
+
+        } else {
+            //Debug.Log ("No Swipe Detected!");
+        }
+    }
+    
+    float VerticalMoveValue ()
+    {
+        return Mathf.Abs (fingerDownPos.y - fingerUpPos.y);
+    }
+
+    float HorizontalMoveValue ()
+    {
+        return Mathf.Abs (fingerDownPos.x - fingerUpPos.x);
+    }
+
+    void OnSwipeUp ()
+    {	
+        //Do something when swiped up
+    }
+
+    void OnSwipeDown ()
+    {
+        //Do something when swiped down
+    }
+
+    void OnSwipeLeft ()
+    {
+        if (canmove && line > 0)
+        {
+            targetline--;
+            canmove = false;
+            movement.x = -5;
+        }
+    }
+    void OnSwipeRight ()
+    {
+        if (canmove && line <2 )
+        {
+            targetline++;
+            canmove = false;
+            movement.x = 5;
+        }
+    }
 
     void CheckInputs()
     {
@@ -107,32 +199,32 @@ public class Movement : MonoBehaviour
         {
             targetline--;
             canmove = false;
-            movement.x = -1.5f;
+            movement.x = -5;
         }
         if (Input.GetKeyDown(KeyCode.D) && canmove && line <2 )
         {
             targetline++;
             canmove = false;
-            movement.x = 1.5f;
+            movement.x = 5;
         }
     }
 
     void Zmovimiento()
     {
-        speed = 3;
+        speed = 10;
         movement.z = speed;
-        if (_distanceScore.distance >= 20 && reducirisOn == false && incrementarIsOn == false)
+        if (_distanceScore.distance >= 250 && reducirisOn == false && incrementarIsOn == false)
         {
-            speed = 5;
+            speed = 13;
             movement.z = speed;
-            if (_distanceScore.distance >= 40)
+            if (_distanceScore.distance >= 400)
             {
-                speed = 7;
+                speed = 16;
                 movement.z = speed;
             }
-            if (_distanceScore.distance >= 60)
+            if (_distanceScore.distance >= 550)
             {
-                speed = 10;
+                speed = 18;
                 movement.z = speed;
             }
         }
@@ -147,9 +239,9 @@ public class Movement : MonoBehaviour
 
     public void ReducirVelocidad()
     {
-        if (reducirisOn == true)
+        if (reducirisOn)
         {
-            speed = 1;
+            speed = 8;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
             if (ReducirDuracion <= 0)
@@ -163,9 +255,9 @@ public class Movement : MonoBehaviour
 
     public void IncrementarVelocidad()
     {
-        if (incrementarIsOn == true)
+        if (incrementarIsOn)
         {
-            speed = 10;
+            speed = 23;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
 
@@ -182,11 +274,22 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
+          
         }
         
         if (other.CompareTag("PowerUpIncrementar"))
         {
             incrementarIsOn = true;
+            Debug.Log("Incrementar activado");
         }
+        
+        if (other.CompareTag("coin"))
+        {
+            // Lógica para recolectar la moneda
+            GameManager.GetInstance().SumarPuntos(1);
+            other.gameObject.SetActive(false);  // Desactivar la moneda
+        }
+        
     }
+    
 }
