@@ -116,14 +116,16 @@ public class Movement : MonoBehaviour
             }
         }
         CheckInputs();
-        /*if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
+        if (_distanceScore.distance == 20000 && pos.y >= 0.5f)
         {
             movement.y = 5;
-            if (_distanceScore.distance >= 50 && pos.y >= 5)
+            movement.z = 0;
+            
+            if (_distanceScore.distance >= 20000 && pos.y >= 7)
             {
                 movement.y = 0;
             }
-        }*/
+        }
         cc.Move(movement * Time.deltaTime);
         Zmovimiento();
     }
