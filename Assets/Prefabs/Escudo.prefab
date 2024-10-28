@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684140405277859689}
-  - component: {fileID: 181595363878998340}
   - component: {fileID: 1822148524479501690}
   - component: {fileID: 7130475073743053799}
   m_Layer: 0
@@ -118,19 +117,6 @@ Transform:
   - {fileID: 8243482914040569336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &181595363878998340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114543990319265558}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600990d3910f3e047bb06125c492b896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinDetectorObj: {fileID: 0}
 --- !u!65 &1822148524479501690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164,3 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e449717617156374d891c5a92263f16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 5
+  Timer: 0
+  timeToDeactivated: 15

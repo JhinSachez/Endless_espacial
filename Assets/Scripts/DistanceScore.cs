@@ -14,6 +14,8 @@ public class DistanceScore : MonoBehaviour
 
     private void Start()
     {
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
+        OnGameStateChange(GameManager.GetInstance().currentGameState);
         scoreText = scoreTextObj.GetComponent<TextMeshProUGUI>();
     }
 
@@ -21,5 +23,13 @@ public class DistanceScore : MonoBehaviour
     {
         distance = (startPos.transform.position.z + this.transform.position.z);
         scoreText.text = distance.ToString("0") + "m";
+    }
+    
+    void OnGameStateChange(Game_State _gs)
+    {
+        if (_gs == Game_State.Game_Over)
+        {
+            scoreTextObj.SetActive(false);
+        }
     }
 }

@@ -59,7 +59,7 @@ public class Vaca : MonoBehaviour
         transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
 
 
-        Invoke("EndEffect", 30f);
+        Invoke("EndEffect", 5f);
 
     }
 

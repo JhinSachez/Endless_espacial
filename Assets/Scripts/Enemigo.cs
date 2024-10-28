@@ -13,7 +13,19 @@ public class Enemigo : MonoBehaviour
         if (collider.CompareTag("Player") && PlayerShleld._isShieldOn == false)
         {
             collider.GetComponent<CombateJugador>().TakeDamage(damage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+        
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("choco con el enemigo");
+        }
+
+
+        if (collider.CompareTag("Player") && PlayerShleld._isShieldOn == true)
+        {
+            PlayerShleld._isShieldOn = false;
+            gameObject.SetActive(false);
         }
 
     }
