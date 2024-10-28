@@ -4,58 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MultiplePoolSpawner : MonoBehaviour
+public class MultiplePoolSpawner : Spawner
 {
-    private static float sharedCooldown = 0f; // Tiempo de inactividad compartido entre todos los spawners
-    private static bool isSpawningActive = false; // Bandera para saber si se puede generar
-
-    bool isOnPlay;
-    public ObjectPoolMultiple objectPoolMultiple; // Referencia al ObjectPoolMultiple
+public ObjectPoolMultiple objectPoolMultiple; // Referencia al ObjectPoolMultiple
     public float minSpawnInterval = 1f;  // Intervalo mínimo entre spawns
     public float maxSpawnInterval = 3f;  // Intervalo máximo entre spawns
     public bool randomizePools = true;   // Si se debe elegir el pool de forma aleatoria
 
     private bool powerUpActive = false; // Para rastrear si hay un power-up activo
-
     public float spawnDelay = 5f; // Tiempo que debe pasar antes de iniciar la generación
-    public float cooldownTime = 5f; // Tiempo de inactividad después de generar un Power-Up
 
     void Start()
     {
-        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
-        OnGameStateChange(GameManager.GetInstance().currentGameState);
-
-        // Iniciar la corrutina solo si el juego está en estado "Play"
-        if (isOnPlay)
-        {
-            StartCoroutine(SpawnObjects());
-        }
+        base.Start(); // Llamar a Start del spawner base
+        StartCoroutine(SpawnObjects());
     }
 
-    void OnGameStateChange(Game_State _gs)
-    {
-        isOnPlay = _gs == Game_State.Play;
-
-        // Si el juego está en pausa o terminado, detener la corrutina de spawner
-        if (!isOnPlay)
-        {
-            StopCoroutine(SpawnObjects());
-        }
-        else
-        {
-            StartCoroutine(SpawnObjects());
-        }
-    }
-
-    IEnumerator SpawnObjects()
+    private IEnumerator SpawnObjects()
     {
         // Esperar el tiempo de retraso antes de comenzar a generar
         yield return new WaitForSeconds(spawnDelay);
 
-        while (isOnPlay)  // Solo generar objetos si el juego está en estado "Play"
+        while (true)  // Mantener la generación
         {
-            // Comprobar si se puede generar un Power-Up
-            if (!powerUpActive && sharedCooldown <= 0f)
+            if (!powerUpActive && SpawnManager.PuedeGenerar(grupo))
             {
                 // Elegir un prefab aleatorio basado en la probabilidad de aparición
                 GameObject selectedPrefab = SelectRandomPrefab();
@@ -64,33 +36,19 @@ public class MultiplePoolSpawner : MonoBehaviour
                 GameObject obj = objectPoolMultiple.GetObjectFromPool(selectedPrefab);
 
                 // Verificar si el objeto es nulo (si el pool está vacío)
-                if (obj == null)
+                if (obj != null)
                 {
-                    Debug.LogWarning("No se pudo obtener un objeto del pool.");
-                }
-                else
-                {
-                    // Activar el objeto y posicionarlo en la posición del spawner
+                    // Posicionar temporalmente el objeto en el spawner
+                    obj.transform.position = transform.position; 
                     obj.SetActive(true);
-                    obj.transform.position = transform.position; // Posicionar en el spawner
-                    obj.transform.rotation = Quaternion.identity;
-
-                    // Marcar que hay un Power-Up activo y establecer el tiempo de inactividad
                     powerUpActive = true;
-                    sharedCooldown = cooldownTime; // Reiniciar el tiempo de inactividad
-
-                    Debug.Log("Power-Up activado: " + obj.name);
 
                     // Añadir lógica para desactivar el power-up después de un tiempo
                     StartCoroutine(DeactivatePowerUp(obj));
                 }
             }
-            else
-            {
-                Debug.Log("No se puede generar un nuevo Power-Up, uno ya está activo o cooldown activo.");
-            }
 
-            // Esperar un tiempo aleatorio antes de spawnear otro objeto
+            // Esperar un tiempo aleatorio antes de intentar generar otro objeto
             float waitTime = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(waitTime);
         }
@@ -98,39 +56,22 @@ public class MultiplePoolSpawner : MonoBehaviour
 
     GameObject SelectRandomPrefab()
     {
-        // Aquí puedes implementar la lógica de probabilidad
-        float randomValue = Random.value;
+        // Asegúrate de que poolItems tenga elementos
+        if (objectPoolMultiple.poolItems.Count == 0)
+        {
+            Debug.LogWarning("No hay elementos en poolItems.");
+            return null; // Retorna null si no hay elementos
+        }
 
-        if (randomValue < 0.5f) // 50% de probabilidad
-        {
-            return objectPoolMultiple.poolItems[0].prefab; // Primer prefab
-        }
-        else if (randomValue < 0.8f) // 30% de probabilidad
-        {
-            return objectPoolMultiple.poolItems[1].prefab; // Segundo prefab
-        }
-        else // 20% de probabilidad
-        {
-            return objectPoolMultiple.poolItems[2].prefab; // Tercer prefab
-        }
+        // Selecciona un prefab aleatorio de la lista
+        return objectPoolMultiple.poolItems[Random.Range(0, objectPoolMultiple.poolItems.Count)].prefab;
     }
 
     IEnumerator DeactivatePowerUp(GameObject powerUp)
     {
         // Esperar un tiempo determinado antes de desactivar el power-up
-        yield return new WaitForSeconds(5f); // Ajusta este tiempo según necesites
+        yield return new WaitForSeconds(5f);
         objectPoolMultiple.ReturnObjectToPool(powerUp);
         powerUpActive = false; // Marcar que ya no hay un power-up activo
-
-        Debug.Log("Power-Up desactivado: " + powerUp.name);
-    }
-
-    private void Update()
-    {
-        // Reducir el tiempo de inactividad compartido si es mayor que 0
-        if (sharedCooldown > 0)
-        {
-            sharedCooldown -= Time.deltaTime;
-        }
     }
 }

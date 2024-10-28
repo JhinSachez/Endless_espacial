@@ -110,12 +110,12 @@ public class Movement : MonoBehaviour
 
     void Zmovimiento()
     {
-        speed = 3;
+        speed = 5;
         movement.z = speed;
 
         if (_distanceScore.distance >= 20 && !reducirIsOn && !incrementarIsOn)
         {
-            speed = 5;
+            speed = 10;
             if (_distanceScore.distance >= 40) speed = 7;
             if (_distanceScore.distance >= 60) speed = 10;
         }
@@ -174,7 +174,7 @@ public class Movement : MonoBehaviour
             incrementarIsOn = true;
         }
 
-        if (other.CompareTag("Coin"))
+        if (other.CompareTag("coin"))
         {
             // Lógica para recolectar la moneda
             Debug.Log("Moneda recolectada");

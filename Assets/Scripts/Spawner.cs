@@ -4,43 +4,35 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    bool isOnPlay;
     public ObjectPool objectPool; // Referencia al Object Pool
-    
     public string grupo = "GrupoSimple";
 
     public float tiempoMinimoEntreSpawns = 1f; // Tiempo mínimo entre spawns
     public float tiempoMaximoEntreSpawns = 5f; // Tiempo máximo entre spawns
 
-    public float tiempoExtra = 2f;
-    public float tiempoInactividad = 3f;
-    
     private float tiempoSiguienteSpawn;  
-    
     private bool generando = false;
 
-
-    void Start()
+    public void Start()
     {
-        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
-        OnGameStateChange(GameManager.GetInstance().currentGameState);
-        
+        SpawnManager.RegisterSpawner(this); // Registrar el spawner en el SpawnManager
         tiempoSiguienteSpawn = Time.time + Random.Range(tiempoMinimoEntreSpawns, tiempoMaximoEntreSpawns);
-
     }
 
-    void OnGameStateChange(Game_State _gs)
+    void OnDestroy()
     {
-        isOnPlay = _gs == Game_State.Play;
+        SpawnManager.UnregisterSpawner(this); // Desregistrar el spawner
     }
 
-    private void Update()
+    public bool CanGenerate()
     {
-        if (!isOnPlay) return;
-        
-        if (!generando && Time.time >= tiempoSiguienteSpawn && SpawnManager.PuedeGenerar(grupo, true))
+        return !generando && Time.time >= tiempoSiguienteSpawn && SpawnManager.PuedeGenerar(grupo);
+    }
+
+    public void StartGenerating()
+    {
+        if (!generando) // Verifica que no se esté generando ya
         {
-            // Comienza la generación
             StartCoroutine(GenerarObjeto());
         }
     }
@@ -49,7 +41,6 @@ public class Spawner : MonoBehaviour
     {
         generando = true; // Indica que está generando
         SpawnManager.ComienzaGenerar(grupo);
-        SpawnManager.SetSpawnerSimpleActivo(true);// Bloquea el otro spawner
 
         try
         {
@@ -64,19 +55,12 @@ public class Spawner : MonoBehaviour
             // Calcula el tiempo para el siguiente spawn
             tiempoSiguienteSpawn = Time.time + Random.Range(tiempoMinimoEntreSpawns, tiempoMaximoEntreSpawns);
 
-            // Aquí podrías añadir una pequeña espera si es necesario
             yield return null;
         }
         finally
         {
-            // Asegura que el grupo se libere incluso si hay un error
             SpawnManager.TerminaGenerar(grupo);
-            SpawnManager.SetSpawnerSimpleActivo(false);
-            SpawnManager.EstablecerTiempoInactividad(tiempoInactividad);
             generando = false;
         }
     }
-  
-    
-
 }
