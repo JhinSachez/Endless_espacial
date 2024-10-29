@@ -13,13 +13,25 @@ public ObjectPoolMultiple objectPoolMultiple; // Referencia al ObjectPoolMultipl
 
     private bool powerUpActive = false; // Para rastrear si hay un power-up activo
     public float spawnDelay = 5f; // Tiempo que debe pasar antes de iniciar la generación
+    bool isOnPlay;
 
     void Start()
     {
         base.Start(); // Llamar a Start del spawner base
         StartCoroutine(SpawnObjects());
-    }
 
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
+        OnGameStateChanged(GameManager.GetInstance().currentGameState);
+    }
+    void OnGameStateChanged(Game_State _gameState)
+    {
+        isOnPlay = _gameState == Game_State.Play;
+
+    }
+    private void Update()
+    {
+        if (!isOnPlay) return;
+    }
     private IEnumerator SpawnObjects()
     {
         // Esperar el tiempo de retraso antes de comenzar a generar

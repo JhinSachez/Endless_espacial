@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -12,13 +13,26 @@ public class Spawner : MonoBehaviour
 
     private float tiempoSiguienteSpawn;  
     private bool generando = false;
+    public float spawnDelay = 5f;
+    bool isOnPlay;
 
     public void Start()
     {
         SpawnManager.RegisterSpawner(this); // Registrar el spawner en el SpawnManager
         tiempoSiguienteSpawn = Time.time + Random.Range(tiempoMinimoEntreSpawns, tiempoMaximoEntreSpawns);
-    }
 
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
+        OnGameStateChanged(GameManager.GetInstance().currentGameState);
+    }
+    void OnGameStateChanged(Game_State _gameState)
+    {
+        isOnPlay = _gameState == Game_State.Play;
+
+    }
+    private void Update()
+    {
+        if (!isOnPlay) return;
+    }
     void OnDestroy()
     {
         SpawnManager.UnregisterSpawner(this); // Desregistrar el spawner
@@ -53,7 +67,7 @@ public class Spawner : MonoBehaviour
             }
 
             // Calcula el tiempo para el siguiente spawn
-            tiempoSiguienteSpawn = Time.time + Random.Range(tiempoMinimoEntreSpawns, tiempoMaximoEntreSpawns);
+            tiempoSiguienteSpawn = Time.time + Random.Range(tiempoMinimoEntreSpawns, tiempoMaximoEntreSpawns + spawnDelay);
 
             yield return null;
         }

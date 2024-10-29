@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -8,7 +9,18 @@ public class SpawnManager : MonoBehaviour
     private static Dictionary<string, bool> grupoMultipleActivo = new Dictionary<string, bool>();
     private static List<Spawner> spawners = new List<Spawner>(); // Lista de spawners
     private static float tiempoInactividad = 0f;
+    bool isOnPlay;
 
+    private void Start()
+    {
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
+        OnGameStateChanged(GameManager.GetInstance().currentGameState);
+    }
+    void OnGameStateChanged(Game_State _gameState)
+    {
+        isOnPlay = _gameState == Game_State.Play;
+    }
+    
     public static void RegisterSpawner(Spawner spawner)
     {
         if (!spawners.Contains(spawner))
@@ -56,6 +68,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        if (!isOnPlay) return;
         // Se activa la generación de objetos en los spawners
         foreach (var spawner in spawners)
         {

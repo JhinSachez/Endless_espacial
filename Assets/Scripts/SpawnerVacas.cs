@@ -15,13 +15,26 @@ public class SpawnerVacas : Spawner
 
     private float tiempoSiguienteSerie; // Tiempo de inicio para la próxima serie
     private bool generandoSerie = false;
+    bool isOnPlay;
 
     void Start()
     {
         base.Start(); // Llamar a Start del spawner base
         tiempoSiguienteSerie = Time.time + Random.Range(tiempoMinimoEntreSeries, tiempoMaximoEntreSeries);
+
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
+        OnGameStateChanged(GameManager.GetInstance().currentGameState);
+    }
+    void OnGameStateChanged(Game_State _gameState)
+    {
+        isOnPlay = _gameState == Game_State.Play;
+
     }
 
+    private void Update()
+    {
+        if (!isOnPlay) return;
+    }
     public new void StartGenerating()
     {
         if (!generandoSerie && Time.time >= tiempoSiguienteSerie && SpawnManager.PuedeGenerar(grupo))
@@ -30,8 +43,10 @@ public class SpawnerVacas : Spawner
         }
     }
 
+
     private IEnumerator GenerarSerieDeObjetos()
     {
+
         generandoSerie = true; // Indica que estamos generando una serie
         SpawnManager.ComienzaGenerar(grupo); // Bloquea el grupo
 
