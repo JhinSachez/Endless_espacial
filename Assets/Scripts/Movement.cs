@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         foreach (Touch touch in Input.touches) {
             if (touch.phase == TouchPhase.Began) {
@@ -116,14 +116,15 @@ public class Movement : MonoBehaviour
             }
         }
         CheckInputs();
-        if (_distanceScore.distance == 20000 && pos.y >= 0.5f)
+        if (_distanceScore.distance >= 100 && pos.y >= 0.5f)
         {
             movement.y = 5;
             movement.z = 0;
-            
-            if (_distanceScore.distance >= 20000 && pos.y >= 7)
+          
+            if (_distanceScore.distance >= 100 && pos.y >= 60)
             {
                 movement.y = 0;
+                movement.z = speed;
             }
         }
         cc.Move(movement * Time.deltaTime);

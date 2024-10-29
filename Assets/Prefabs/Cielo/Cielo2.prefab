@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
@@ -199,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
@@ -209,7 +209,7 @@ PrefabInstance:
     - target: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
@@ -219,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 5896552841333144636, guid: aa6929758b960be4183bc90afee82fe7,
         type: 3}
       propertyPath: m_Name
-      value: Cielo1 Variant
+      value: Cielo2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
