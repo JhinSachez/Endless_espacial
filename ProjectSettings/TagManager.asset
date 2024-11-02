@@ -13,6 +13,8 @@ TagManager:
   - Coin
   - coin
   - Colision
+  - Tierra
+  - Cielo
   layers:
   - Default
   - TransparentFX

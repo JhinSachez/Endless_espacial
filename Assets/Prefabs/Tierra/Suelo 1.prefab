@@ -2331,6 +2331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Suelo 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2260430992548519755, guid: ed871192e2af0e44c95bbb6c7d117b14,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tierra
+      objectReference: {fileID: 0}
     - target: {fileID: 5086273722723823856, guid: ed871192e2af0e44c95bbb6c7d117b14,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
