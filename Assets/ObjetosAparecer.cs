@@ -43,7 +43,7 @@ public class ObjetosAparecer : MonoBehaviour
 
     IEnumerator Disappear()
     {
-        yield return new WaitForSecondsRealtime(6);
+        yield return new WaitForSecondsRealtime(5);
         Sky.SetActive(true);
     }
 
