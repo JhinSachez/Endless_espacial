@@ -5,28 +5,21 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-
     public static bool _magnetOn = false;
     public float magnetSpeed;
     private GameObject _player;
-    public bool detector;
 
-    #region paco
-    public float Speed = 200.0f;
-    bool isOnPlay;
-    public float Timer = 0;
+    public float Speed = 5f;
+    private bool isOnPlay;
+    private float Timer = 0;
     public float timeToDeactivated = 15;
     private bool yaColisionado = false;
-    #endregion
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-
+        _player = GameObject.FindGameObjectWithTag("Colision");
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
         OnGameStateChange(GameManager.GetInstance().currentGameState);
-
-        detector = false;
     }
 
     void OnGameStateChange(Game_State _gs)
@@ -36,34 +29,23 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-
         if (other.CompareTag("Player") && !yaColisionado)
         {
             yaColisionado = true;
-
-            MagnetEffect();
-
-            // Aquí normalmente agregarías puntos al jugador, por ejemplo:
-            GameManager.GetInstance().SumarPuntos(1);
-
-            // En lugar de destruir el objeto, simplemente lo desactivamos
-            gameObject.SetActive(false);
-
-
+            GameManager.GetInstance().SumarPuntos(1);  // Sumar puntos al jugador
+            gameObject.SetActive(false);  // Desactivar moneda
         }
-    }
 
-    void MagnetEffect()
-    {
-        float distancia = Vector3.Distance(_player.transform.position, this.transform.position);
-
-        if (distancia <= 1f)
+        if (_magnetOn)
         {
-            transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
-
+            if (other.CompareTag("Colision") && !yaColisionado)
+            {
+                yaColisionado = true;
+                GameManager.GetInstance().SumarPuntos(1);  // Sumar puntos al jugador
+                gameObject.SetActive(false);  // Desactivar moneda
+            }
         }
-        Invoke("EndEffect", 20f);
+
     }
 
     void EndEffect()
@@ -73,22 +55,41 @@ public class Coin : MonoBehaviour
 
     void Update()
     {
-
         if (!isOnPlay) return;
+
         if (_magnetOn)
         {
-            MagnetEffect();
+
+          MagnetEffect();
+
         }
+
+        Timer += Time.deltaTime;
         if (Timer > timeToDeactivated)
         {
             Timer = 0;
+            gameObject.SetActive(false);  // Desactivar moneda después de cierto tiempo
         }
-        transform.Translate(Vector3.back * Speed * Time.deltaTime);
-        Timer += Time.deltaTime;
 
-        if (Timer > timeToDeactivated)
-        {
-            gameObject.SetActive(false);
-        }
+        // Movimiento de la moneda
+        transform.Translate(Vector3.back * Speed * Time.deltaTime);
+    }
+
+    IEnumerator Atraer()
+    {
+
+        yield return new WaitForSeconds(.8f);
+
+        transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
+
+    }
+
+    void MagnetEffect()
+    {
+        //transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
+
+        StartCoroutine(Atraer());
+
+        Invoke("EndEffect", 20f);
     }
 }
