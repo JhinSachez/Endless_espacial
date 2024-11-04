@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 121313095}
   serializedVersion: 2
   m_LocalRotation: {x: 0.071189284, y: -0, z: -0, w: 0.99746287}
-  m_LocalPosition: {x: 1, y: 2.25, z: 45.99}
+  m_LocalPosition: {x: 1, y: -2.01, z: 45.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,14 +295,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 121313095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137324bb1e043e14087fe4d154e92736, type: 3}
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 2058228958}
-  grupo: Grupo3
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 3
+  objectPoolMultiple: {fileID: 373682815}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
 --- !u!1001 &132118009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -927,6 +928,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1564870448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &373682813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373682814}
+  - component: {fileID: 373682815}
+  m_Layer: 0
+  m_Name: poolObs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &373682814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373682813}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 433940558}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373682815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373682813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f15e79fd7830e14da2d882d03c817a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItems:
+  - prefab: {fileID: 2855756846091027922, guid: 69188febbc04ab64a82a584b029d87a9,
+      type: 3}
+    poolSize: 7
+  - prefab: {fileID: 5426763717288874758, guid: 5eae878b3212da847956914306f7980b,
+      type: 3}
+    poolSize: 7
+  - prefab: {fileID: 6757883799697809712, guid: 617b0919ced83584f94b1dbbe8a9095f,
+      type: 3}
+    poolSize: 7
 --- !u!1 &405247253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1273,41 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &433940557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 433940558}
+  m_Layer: 0
+  m_Name: Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433940558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433940557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8262617, y: 2.041696, z: 46.6728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1577203751}
+  - {fileID: 1738764917}
+  - {fileID: 2058228959}
+  - {fileID: 373682814}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &454061035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2171,7 @@ Transform:
   m_GameObject: {fileID: 780899542}
   serializedVersion: 2
   m_LocalRotation: {x: 0.071189284, y: -0, z: -0, w: 0.99746287}
-  m_LocalPosition: {x: -1, y: 2.25, z: 45.99}
+  m_LocalPosition: {x: -1, y: -2.01, z: 45.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2096,14 +2186,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 780899542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137324bb1e043e14087fe4d154e92736, type: 3}
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 2058228958}
-  grupo: Grupo2
-  tiempoMinimoEntreSpawns: 3
-  tiempoMaximoEntreSpawns: 7
-  spawnDelay: 9
+  objectPoolMultiple: {fileID: 373682815}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
 --- !u!1 &790502309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,15 +2241,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: {fileID: 1577203750}
   grupo: Grupo2
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 5
-  grupo: Grupo2
   tiempoMinimoEntreSeries: 3
   tiempoMaximoEntreSeries: 6
   numeroMinimoObjetosPorSerie: 1
   numeroMaximoObjetosPorSerie: 5
   tiempoEntreObjetosConsecutivos: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,16 +2421,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 0}
-  grupo: GrupoSimple
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 5
   objectPoolMultiple: {fileID: 1738764916}
   minSpawnInterval: 12
   maxSpawnInterval: 24
   randomizePools: 1
   spawnDelay: 5
+  cooldownTime: 5
 --- !u!1 &891240094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2439,16 +2525,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 0}
-  grupo: GrupoSimple
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 5
   objectPoolMultiple: {fileID: 1738764916}
   minSpawnInterval: 12
   maxSpawnInterval: 24
   randomizePools: 1
   spawnDelay: 5
+  cooldownTime: 5
 --- !u!1 &1066155680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,7 +2850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1196917951}
-  - component: {fileID: 1196917950}
+  - component: {fileID: 1196917952}
   m_Layer: 3
   m_Name: SpawnObstaculo1
   m_TagString: Untagged
@@ -2776,23 +2858,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1196917950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196917949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137324bb1e043e14087fe4d154e92736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectPool: {fileID: 2058228958}
-  grupo: Grupo1
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 6
 --- !u!4 &1196917951
 Transform:
   m_ObjectHideFlags: 0
@@ -2802,12 +2867,30 @@ Transform:
   m_GameObject: {fileID: 1196917949}
   serializedVersion: 2
   m_LocalRotation: {x: 0.071189284, y: -0, z: -0, w: 0.99746287}
-  m_LocalPosition: {x: 0, y: 2.25, z: 45.99}
+  m_LocalPosition: {x: 0, y: -2.01, z: 45.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
   m_LocalEulerAnglesHint: {x: -21.835, y: 0, z: 0}
+--- !u!114 &1196917952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196917949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPoolMultiple: {fileID: 373682815}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
 --- !u!1 &1328807782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,16 +3003,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 0}
-  grupo: GrupoSimple
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 5
   objectPoolMultiple: {fileID: 1738764916}
   minSpawnInterval: 12
   maxSpawnInterval: 24
   randomizePools: 1
   spawnDelay: 5
+  cooldownTime: 5
 --- !u!1 &1391444241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,12 +3515,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 11.05
-  m_Radius: 0.89
+  m_Radius: 0.51
   m_SlopeLimit: 45.12
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: -1.37}
+  m_Center: {x: 0.12, y: 0, z: -1.73}
 --- !u!114 &1564870454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3474,8 +3553,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9979157, y: 1.2701114, z: 1.8864099}
-  m_Center: {x: 0.11505268, y: 4.7844605, z: -1.1876408}
+  m_Size: {x: 1.3656559, y: 1.1481408, z: 1.7831576}
+  m_Center: {x: 0.13370395, y: 4.7234774, z: -1.1360146}
 --- !u!1 &1574060764
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,15 +3601,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: {fileID: 1577203750}
   grupo: Grupo3
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 5
-  grupo: Grupo3
   tiempoMinimoEntreSeries: 3
   tiempoMaximoEntreSeries: 6
   numeroMinimoObjetosPorSerie: 1
   numeroMaximoObjetosPorSerie: 5
   tiempoEntreObjetosConsecutivos: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1577203749
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,12 +3648,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577203749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.305598, y: -4.6200886, z: 52.246567}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.1318598, y: -6.6617846, z: 5.5737686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433940558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1611749750 stripped
 GameObject:
@@ -3966,11 +4044,11 @@ Transform:
   m_GameObject: {fileID: 1738764915}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.305598, y: -4.6200886, z: 52.246567}
+  m_LocalPosition: {x: 2.1318598, y: -6.6617846, z: 5.5737686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433940558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1959036165
 GameObject:
@@ -4018,15 +4096,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: {fileID: 1577203750}
   grupo: Grupo1
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  spawnDelay: 5
-  grupo: Grupo1
   tiempoMinimoEntreSeries: 3
   tiempoMaximoEntreSeries: 6
   numeroMinimoObjetosPorSerie: 1
   numeroMaximoObjetosPorSerie: 5
   tiempoEntreObjetosConsecutivos: 0.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1001 &1970540003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4239,12 +4316,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058228957}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.305598, y: -4.6200886, z: 52.246567}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.1318598, y: -6.6617846, z: 5.5737686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 433940558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -4256,9 +4333,6 @@ SceneRoots:
   - {fileID: 1564870448}
   - {fileID: 537865020}
   - {fileID: 238922659}
-  - {fileID: 1577203751}
-  - {fileID: 1738764917}
-  - {fileID: 2058228959}
   - {fileID: 891240096}
   - {fileID: 769081050}
   - {fileID: 776208144}
@@ -4267,3 +4341,4 @@ SceneRoots:
   - {fileID: 408538393}
   - {fileID: 132118009}
   - {fileID: 198912726}
+  - {fileID: 433940558}
