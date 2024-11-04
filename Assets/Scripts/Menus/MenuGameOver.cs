@@ -29,8 +29,8 @@ public class MenuGameOver : MonoBehaviour
     {
         if (_gs == Game_State.Game_Over)
         {
-            distanceText.text = distanceScore.scoreText.text;
-            vacaText.text = GameManager.GetInstance().ObtenerPuntuacion().ToString();
+            //distanceText.text = distanceScore.scoreText.text;
+           // vacaText.text = GameManager.GetInstance().ObtenerPuntuacion().ToString();
             menuGameOver.SetActive(true);
         }
     }
