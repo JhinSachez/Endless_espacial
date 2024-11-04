@@ -313,7 +313,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1278642673}
   minSpawnInterval: 1
   maxSpawnInterval: 3
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 5
   puedeGenerarEnTierra: 1
@@ -507,7 +506,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1297263281}
   minSpawnInterval: 1
   maxSpawnInterval: 3
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 5
   puedeGenerarEnTierra: 0
@@ -1657,10 +1655,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceScore: {fileID: 1564870450}
+  IsOnEarth: 1
+  IsOnSky: 0
+  IsOnSpace: 0
   Earth: {fileID: 549986812}
   Sky: {fileID: 336776014}
   Space: {fileID: 374484183}
   Transicion: {fileID: 716633568}
+  spawners:
+  - {fileID: 1196917952}
+  - {fileID: 780899544}
+  - {fileID: 121313097}
+  - {fileID: 194586620}
+  - {fileID: 1504517162}
+  - {fileID: 974571906}
 --- !u!4 &514148519
 Transform:
   m_ObjectHideFlags: 0
@@ -2452,7 +2460,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1278642673}
   minSpawnInterval: 1
   maxSpawnInterval: 3
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 5
   puedeGenerarEnTierra: 1
@@ -2887,7 +2894,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1738764916}
   minSpawnInterval: 12
   maxSpawnInterval: 24
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 15
   puedeGenerarEnTierra: 0
@@ -3073,7 +3079,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1297263281}
   minSpawnInterval: 1
   maxSpawnInterval: 3
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 5
   puedeGenerarEnTierra: 0
@@ -3199,7 +3204,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1738764916}
   minSpawnInterval: 12
   maxSpawnInterval: 24
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 18
   puedeGenerarEnTierra: 0
@@ -3568,7 +3572,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1278642673}
   minSpawnInterval: 1
   maxSpawnInterval: 3
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 5
   puedeGenerarEnTierra: 1
@@ -3921,7 +3924,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1738764916}
   minSpawnInterval: 12
   maxSpawnInterval: 24
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 17
   puedeGenerarEnTierra: 0
@@ -4345,7 +4347,6 @@ MonoBehaviour:
   objectPoolMultiple: {fileID: 1297263281}
   minSpawnInterval: 1
   maxSpawnInterval: 3
-  randomizePools: 1
   spawnDelay: 5
   cooldownTime: 5
   puedeGenerarEnTierra: 0
