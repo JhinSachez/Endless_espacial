@@ -15,6 +15,7 @@ TagManager:
   - Colision
   - Tierra
   - Cielo
+  - powerUp
   layers:
   - Default
   - TransparentFX

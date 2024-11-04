@@ -277,8 +277,8 @@ GameObject:
   - component: {fileID: 121313096}
   - component: {fileID: 121313097}
   m_Layer: 0
-  m_Name: SpawnObstaculo3
-  m_TagString: Untagged
+  m_Name: SpawnObstaculoT3
+  m_TagString: Tierra
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,13 +291,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121313095}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.071189284, y: -0, z: -0, w: 0.99746287}
-  m_LocalPosition: {x: 1, y: 2.25, z: 45.99}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: -2.34, z: 45.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
-  m_LocalEulerAnglesHint: {x: -21.835, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &121313097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,15 +307,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 121313095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137324bb1e043e14087fe4d154e92736, type: 3}
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 2058228958}
-  grupo: Grupo3
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  tiempoExtra: 2
-  tiempoInactividad: 3
+  objectPoolMultiple: {fileID: 1278642673}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
+  puedeGenerarEnTierra: 1
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1001 &132118009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -457,6 +460,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa6929758b960be4183bc90afee82fe7, type: 3}
+--- !u!1 &194586618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 194586619}
+  - component: {fileID: 194586620}
+  m_Layer: 3
+  m_Name: SpawnObstaculoC1
+  m_TagString: Cielo
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &194586619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194586618}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.23, z: 45.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194586620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194586618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPoolMultiple: {fileID: 1297263281}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
+  puedeGenerarEnTierra: 0
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1001 &198912726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -831,10 +887,13 @@ Transform:
   m_Children:
   - {fileID: 1066155681}
   - {fileID: 1196917951}
+  - {fileID: 194586619}
   - {fileID: 1959036166}
   - {fileID: 780899543}
+  - {fileID: 1504517161}
   - {fileID: 790502310}
   - {fileID: 121313096}
+  - {fileID: 974571905}
   - {fileID: 871782712}
   - {fileID: 1034282227}
   - {fileID: 1337088762}
@@ -1598,9 +1657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceScore: {fileID: 1564870450}
-  IsOnEarth: 1
-  IsOnSky: 0
-  IsOnSpace: 0
   Earth: {fileID: 549986812}
   Sky: {fileID: 336776014}
   Space: {fileID: 374484183}
@@ -1725,7 +1781,7 @@ Transform:
   - {fileID: 1612387191}
   - {fileID: 2005991123}
   - {fileID: 1577203751}
-  - {fileID: 2058228959}
+  - {fileID: 1278642674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &551086748 stripped
@@ -2360,8 +2416,8 @@ GameObject:
   - component: {fileID: 780899543}
   - component: {fileID: 780899544}
   m_Layer: 0
-  m_Name: SpawnObstaculo2
-  m_TagString: Untagged
+  m_Name: SpawnObstaculoT2
+  m_TagString: Tierra
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2374,13 +2430,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780899542}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.071189284, y: -0, z: -0, w: 0.99746287}
-  m_LocalPosition: {x: -1, y: 2.25, z: 45.99}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: -2.34, z: 45.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
-  m_LocalEulerAnglesHint: {x: -21.835, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &780899544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,15 +2446,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 780899542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137324bb1e043e14087fe4d154e92736, type: 3}
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 2058228958}
-  grupo: Grupo2
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  tiempoExtra: 2
-  tiempoInactividad: 3
+  objectPoolMultiple: {fileID: 1278642673}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
+  puedeGenerarEnTierra: 1
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1 &790502309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,7 +2852,7 @@ GameObject:
   - component: {fileID: 871782713}
   m_Layer: 3
   m_Name: PowerUp Spawner 1
-  m_TagString: Untagged
+  m_TagString: powerUp
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2831,6 +2890,9 @@ MonoBehaviour:
   randomizePools: 1
   spawnDelay: 5
   cooldownTime: 15
+  puedeGenerarEnTierra: 0
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1 &891240094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,6 +3026,59 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1411384388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &974571904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974571905}
+  - component: {fileID: 974571906}
+  m_Layer: 0
+  m_Name: SpawnObstaculoC3
+  m_TagString: Cielo
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &974571905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974571904}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 2.23, z: 45.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974571906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974571904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPoolMultiple: {fileID: 1297263281}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
+  puedeGenerarEnTierra: 0
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1001 &1029799093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3049,7 +3164,7 @@ GameObject:
   - component: {fileID: 1034282228}
   m_Layer: 0
   m_Name: PowerUp Spawner 2
-  m_TagString: Untagged
+  m_TagString: powerUp
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3087,6 +3202,9 @@ MonoBehaviour:
   randomizePools: 1
   spawnDelay: 5
   cooldownTime: 18
+  puedeGenerarEnTierra: 0
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1 &1066155680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,32 +3530,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1196917951}
-  - component: {fileID: 1196917950}
+  - component: {fileID: 1196917952}
   m_Layer: 3
-  m_Name: SpawnObstaculo1
-  m_TagString: Untagged
+  m_Name: SpawnObstaculoT1
+  m_TagString: Tierra
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1196917950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1196917949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137324bb1e043e14087fe4d154e92736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectPool: {fileID: 2058228958}
-  grupo: Grupo1
-  tiempoMinimoEntreSpawns: 1
-  tiempoMaximoEntreSpawns: 5
-  tiempoExtra: 2
-  tiempoInactividad: 3
 --- !u!4 &1196917951
 Transform:
   m_ObjectHideFlags: 0
@@ -3446,13 +3546,138 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196917949}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.071189284, y: -0, z: -0, w: 0.99746287}
-  m_LocalPosition: {x: 0, y: 2.25, z: 45.99}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.34, z: 45.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
-  m_LocalEulerAnglesHint: {x: -21.835, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196917952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196917949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPoolMultiple: {fileID: 1278642673}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
+  puedeGenerarEnTierra: 1
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
+--- !u!1 &1278642672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278642674}
+  - component: {fileID: 1278642673}
+  m_Layer: 0
+  m_Name: poolObsTierra
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1278642673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278642672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f15e79fd7830e14da2d882d03c817a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItems:
+  - prefab: {fileID: 2855756846091027922, guid: 69188febbc04ab64a82a584b029d87a9,
+      type: 3}
+    poolSize: 7
+  - prefab: {fileID: 5426763717288874758, guid: 5eae878b3212da847956914306f7980b,
+      type: 3}
+    poolSize: 7
+  - prefab: {fileID: 6757883799697809712, guid: 617b0919ced83584f94b1dbbe8a9095f,
+      type: 3}
+    poolSize: 7
+--- !u!4 &1278642674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278642672}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -734.32117, y: -411.2217, z: 17.440353}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 549986813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1297263280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1297263282}
+  - component: {fileID: 1297263281}
+  m_Layer: 0
+  m_Name: PoolObsCielo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1297263281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297263280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f15e79fd7830e14da2d882d03c817a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItems:
+  - prefab: {fileID: 5744806805502084512, guid: 534e43f8d98d643439b858bb7fea4f8f,
+      type: 3}
+    poolSize: 7
+  - prefab: {fileID: 251928111481094513, guid: f03ffca4ba1787e46806059943d58b5e, type: 3}
+    poolSize: 7
+--- !u!4 &1297263282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297263280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.9905956, y: 4.664169, z: 38.302372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1308351956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3661,7 +3886,7 @@ GameObject:
   - component: {fileID: 1337088763}
   m_Layer: 0
   m_Name: PowerUp Spawner 3
-  m_TagString: Untagged
+  m_TagString: powerUp
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3699,6 +3924,9 @@ MonoBehaviour:
   randomizePools: 1
   spawnDelay: 5
   cooldownTime: 17
+  puedeGenerarEnTierra: 0
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1 &1391444241
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,6 +4298,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457047896}
   m_CullTransparentMesh: 1
+--- !u!1 &1504517160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1504517161}
+  - component: {fileID: 1504517162}
+  m_Layer: 0
+  m_Name: SpawnObstaculoC2
+  m_TagString: Cielo
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1504517161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504517160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 2.23, z: 45.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1504517162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504517160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf7205bc05b6324786092ed3f101b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPoolMultiple: {fileID: 1297263281}
+  minSpawnInterval: 1
+  maxSpawnInterval: 3
+  randomizePools: 1
+  spawnDelay: 5
+  cooldownTime: 5
+  puedeGenerarEnTierra: 0
+  puedeGenerarEnCielo: 0
+  puedeGenerarEnEspacio: 0
 --- !u!1 &1564870445
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,12 +4447,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 11.05
-  m_Radius: 0.89
+  m_Radius: 0.44
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: -1.37}
+  m_Center: {x: 0.09, y: 0, z: -1.37}
 --- !u!114 &1564870454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4204,8 +4485,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9979157, y: 1.2701114, z: 1.8864099}
-  m_Center: {x: 0.11505268, y: 4.7844605, z: -1.1876408}
+  m_Size: {x: 1.1413457, y: 1.2701114, z: 1.1463184}
+  m_Center: {x: 0.116054185, y: 4.7844605, z: -1.2629098}
 --- !u!1 &1574060764
 GameObject:
   m_ObjectHideFlags: 0
@@ -5425,52 +5706,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1970540003}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2058228957
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2058228959}
-  - component: {fileID: 2058228958}
-  m_Layer: 0
-  m_Name: PoolObstaculos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2058228958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058228957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7587e68fe3b989479f9b7d396509842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 9183063279736514240, guid: c2e3a2c0fb0848a43b68f8a4d2294a69, type: 3}
-  poolSize: 10
---- !u!4 &2058228959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058228957}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -731.484, y: -413.38104, z: 48.376144}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 549986813}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2090306442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2474863718703185912, guid: aa6929758b960be4183bc90afee82fe7,
@@ -5626,3 +5861,4 @@ SceneRoots:
   - {fileID: 374484184}
   - {fileID: 716633569}
   - {fileID: 2016197699}
+  - {fileID: 1297263282}
