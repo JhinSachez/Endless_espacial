@@ -51,12 +51,6 @@ public class MenuGameOver : MonoBehaviour
         SceneManager.LoadScene(nombre);
     }
 
-    public void Salir()
-    {
-        //UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
-    }
-
     private void Update()
     {
         if (!isOnGameOver) return;

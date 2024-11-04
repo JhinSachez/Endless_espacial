@@ -39,6 +39,8 @@ public class Vaca : MonoBehaviour
         {
             yaColisionado = true;
 
+           // AudioManager.instance.PlayCoin();
+
             // se llama la funcion para aplicar el efecto del iman
             MagnetEffect(); 
 
