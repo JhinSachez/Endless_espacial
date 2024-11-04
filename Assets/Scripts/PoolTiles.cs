@@ -9,12 +9,12 @@ public class PoolTiles : MonoBehaviour
     List<GameObject> tiles = new List<GameObject>();
    public List<GameObject> tileprefab = new List<GameObject>();
     bool isOnPlay;
-     public float timer = 1;
-    float timerrestart;
     public float DistanciaSpawn;
     public Vector3 nextpos;
-    public Movement powerup;
-    public int _CantidadPowerUps;
+    public GameObject padre;
+    public int TileLoopCount = 1;
+
+    GameObject player;
     
 
     GameObject ObtenerTile()
@@ -36,13 +36,14 @@ public class PoolTiles : MonoBehaviour
     {
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChanged;
         OnGameStateChanged(GameManager.GetInstance().currentGameState);
-
-        timerrestart = timer;
+        player = GameObject.FindGameObjectWithTag("Player");
+        TileLoopCount = 1;
 
         for(int i = 0; i < tileprefab.Count; i++)
         {
             GameObject newTile = Instantiate(tileprefab[i], Vector3.zero, Quaternion.Euler(new Vector3(0,-90,0)));
             tiles.Add(newTile);
+            newTile.transform.parent = padre.transform;
             newTile.SetActive(false);
         }
 
@@ -60,47 +61,15 @@ public class PoolTiles : MonoBehaviour
         if (isOnPlay)
         {
     
-            switch(_CantidadPowerUps)
+           
+           
+            if(player.transform.position.z >= DistanciaSpawn* TileLoopCount)
             {
-                case 1:
-                timer = 2f;
-                break;
-                
-                case 2: timer = 2.5f;
-                break;
-                
-            }
-            
-            switch(_CantidadPowerUps)
-            {
-                case 1:
-                    timer = 0.8f;
-                    break;
-                
-                case 2: timer = 0.8f;
-                    break;
-                
-            }
-            /*if (powerup.incrementarIsOn == true)
-            {
-                timer = 0.8f;
-                timer -= Time.deltaTime;
-            }
-
-            if (powerup.reducirisOn)
-            {
-                timer = 1.5f;
-                timer -= Time.deltaTime;
-            } */
-            
-            timer -= Time.deltaTime;
-            if(timer <= 0)
-            {
+                TileLoopCount++;
                GameObject tile = ObtenerTile();
                 tile.transform.position = nextpos;
                 tile.SetActive(true);
                 nextpos += new Vector3(0, 0, DistanciaSpawn);
-                timer = timerrestart;
                 if(tiles.Count > 15)
                 {
                     GameObject paco = tiles[0];

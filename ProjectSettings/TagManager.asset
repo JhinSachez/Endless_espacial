@@ -11,6 +11,10 @@ TagManager:
   - PowerUpIncrementar
   - Enemigo
   - Coin
+  - coin
+  - Colision
+  - Tierra
+  - Cielo
   layers:
   - Default
   - TransparentFX
