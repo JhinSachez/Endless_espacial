@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class MultiplePoolSpawner : MonoBehaviour
 {
-    private static float sharedCooldown = 0f; // Tiempo de inactividad compartido entre todos los spawners
+   private static float sharedCooldown = 0f; // Tiempo de inactividad compartido entre todos los spawners
     private static bool isSpawningActive = false; // Bandera para saber si se puede generar
 
     bool isOnPlay;
@@ -47,55 +47,66 @@ public class MultiplePoolSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnObjects()
+IEnumerator SpawnObjects()
+{
+    // Esperar el tiempo de retraso antes de comenzar a generar
+    yield return new WaitForSeconds(spawnDelay);
+
+    while (isOnPlay)  // Solo generar objetos si el juego está en estado "Play"
     {
-        // Esperar el tiempo de retraso antes de comenzar a generar
-        yield return new WaitForSeconds(spawnDelay);
-
-        while (isOnPlay)  // Solo generar objetos si el juego está en estado "Play"
+        // Comprobar si se puede generar un Power-Up
+        if (!powerUpActive && sharedCooldown <= 0f)
         {
-            // Comprobar si se puede generar un Power-Up
-            if (!powerUpActive && sharedCooldown <= 0f)
+            // Elegir un prefab aleatorio basado en la probabilidad de aparición
+            GameObject selectedPrefab = SelectRandomPrefab();
+
+            // Obtener un objeto del pool seleccionado
+            GameObject obj = objectPoolMultiple.GetObjectFromPool(selectedPrefab);
+
+            // Verificar si el objeto es nulo (si el pool está vacío)
+            if (obj == null)
             {
-                // Elegir un prefab aleatorio basado en la probabilidad de aparición
-                GameObject selectedPrefab = SelectRandomPrefab();
+                Debug.LogWarning("No se pudo obtener un objeto del pool.");
+            }
+            else
+            {
+                // Posicionar temporalmente el objeto en el spawner
+                obj.transform.position = transform.position; 
+                obj.transform.rotation = Quaternion.identity;
 
-                // Obtener un objeto del pool seleccionado
-                GameObject obj = objectPoolMultiple.GetObjectFromPool(selectedPrefab);
+                // Comprobar si la posición está libre usando un "Overlap" para verificar colisiones
+                Collider[] colliders = Physics.OverlapSphere(obj.transform.position, 1f, LayerMask.GetMask("PowerUp", "Obstacle")); // Ajusta el radio según el tamaño del objeto
 
-                // Verificar si el objeto es nulo (si el pool está vacío)
-                if (obj == null)
+                if (colliders.Length == 0)
                 {
-                    Debug.LogWarning("No se pudo obtener un objeto del pool.");
-                }
-                else
-                {
-                    // Activar el objeto y posicionarlo en la posición del spawner
+                    // Si no hay colisión, activar el objeto y marcarlo como activo
                     obj.SetActive(true);
-                    obj.transform.position = transform.position; // Posicionar en el spawner
-                    obj.transform.rotation = Quaternion.identity;
-
-                    // Marcar que hay un Power-Up activo y establecer el tiempo de inactividad
                     powerUpActive = true;
-                    sharedCooldown = cooldownTime; // Reiniciar el tiempo de inactividad
+                    sharedCooldown = cooldownTime;
 
                     Debug.Log("Power-Up activado: " + obj.name);
 
                     // Añadir lógica para desactivar el power-up después de un tiempo
                     StartCoroutine(DeactivatePowerUp(obj));
                 }
+                else
+                {
+                    // Si hay colisión, devolver el objeto al pool sin activarlo
+                    Debug.LogWarning("Posición ocupada, no se puede generar Power-Up aquí.");
+                    objectPoolMultiple.ReturnObjectToPool(obj);
+                }
             }
-            else
-            {
-                Debug.Log("No se puede generar un nuevo Power-Up, uno ya está activo o cooldown activo.");
-            }
-
-            // Esperar un tiempo aleatorio antes de spawnear otro objeto
-            float waitTime = Random.Range(minSpawnInterval, maxSpawnInterval);
-            yield return new WaitForSeconds(waitTime);
         }
-    }
+        else
+        {
+            Debug.Log("No se puede generar un nuevo Power-Up, uno ya está activo o cooldown activo.");
+        }
 
+        // Esperar un tiempo aleatorio antes de intentar generar otro objeto
+        float waitTime = Random.Range(minSpawnInterval, maxSpawnInterval);
+        yield return new WaitForSeconds(waitTime);
+    }
+}
     GameObject SelectRandomPrefab()
     {
         // Aquí puedes implementar la lógica de probabilidad

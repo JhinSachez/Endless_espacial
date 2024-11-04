@@ -48,9 +48,6 @@ public class Movement : MonoBehaviour
         OnGameStateChanged(GameManager.GetInstance().currentGameState);
 
     }
-    
-    
-
     void OnGameStateChanged(Game_State _gameState)
     {
         isOnPlay = _gameState == Game_State.Play;
