@@ -31,5 +31,12 @@ public class DistanceScore : MonoBehaviour
         {
             scoreTextObj.SetActive(false);
         }
+        
+        if (_gs == Game_State.Pause)
+        {
+            scoreTextObj.SetActive(false);
+        }
     }
+    
+    
 }

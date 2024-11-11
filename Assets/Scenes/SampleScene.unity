@@ -720,9 +720,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuGameOver: {fileID: 771156681}
-  distanceScore: {fileID: 0}
-  distanceText: {fileID: 0}
-  vacaText: {fileID: 0}
+  distanceScore: {fileID: 1564870450}
+  distanceText: {fileID: 561785027}
+  vacaText: {fileID: 1154096776}
 --- !u!114 &238922661
 MonoBehaviour:
   m_ObjectHideFlags: 0

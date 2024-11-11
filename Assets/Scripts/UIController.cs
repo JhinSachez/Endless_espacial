@@ -28,6 +28,10 @@ public class UIController : MonoBehaviour
         {
                 texto.SetActive(false);
         }
+        if (_gs == Game_State.Pause)
+        {
+            texto.SetActive(false);
+        }
     }
     private void Update()
     {
