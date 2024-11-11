@@ -123,6 +123,17 @@ public class Movement : MonoBehaviour
                 movement.y = 0;
                 movement.z = speed;
             }
+
+            if (_distanceScore.distance >= 20000 && pos.y >= 60)
+            {
+                movement.y = 5;
+                movement.z = 0;
+                if (_distanceScore.distance >= 20000 && pos.y >= 100)
+                {
+                    movement.y = 0;
+                    movement.z = speed;
+                }
+            }
         }
         cc.Move(movement * Time.deltaTime);
         Zmovimiento();
@@ -211,9 +222,9 @@ public class Movement : MonoBehaviour
 
     void Zmovimiento()
     {
-        speed = 15;
+        speed =500;
         movement.z = speed;
-        if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
+        /*if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
         {
             speed = 19;
             movement.z = speed;
@@ -234,7 +245,7 @@ public class Movement : MonoBehaviour
         }else if (incrementarIsOn == true)
         {
             IncrementarVelocidad();
-        }
+        }*/
     }
 
     public void ReducirVelocidad()

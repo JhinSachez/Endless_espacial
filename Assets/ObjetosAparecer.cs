@@ -29,6 +29,14 @@ public class ObjetosAparecer : MonoBehaviour
             UpdateSpawnerBools();
             StartCoroutine(Disappear());
         }
+        
+        if(_distanceScore.distance >= 20000)
+        {
+            IsOnSky = false;
+            IsOnSpace = true;
+
+            StartCoroutine(Disappear2());
+        }
     }
 
     private void UpdateSpawnerBools()
@@ -46,12 +54,24 @@ public class ObjetosAparecer : MonoBehaviour
         yield return new WaitForSecondsRealtime(5);
         Sky.SetActive(true);
     }
+    
+    IEnumerator Disappear2()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        Space.SetActive(true);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         GameObject[] gameObjectArray = GameObject.FindGameObjectsWithTag("Tierra");
+        GameObject[] gameObjectArray2 = GameObject.FindGameObjectsWithTag("Cielo");
 
         foreach (GameObject go in gameObjectArray)
+        {
+            go.SetActive(false);
+        }
+        
+        foreach (GameObject go in gameObjectArray2)
         {
             go.SetActive(false);
         }
