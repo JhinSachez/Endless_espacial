@@ -5242,7 +5242,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5695,9 +5695,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1920355164}
   sfxSource: {fileID: 1308351957}
-  musicClip: {fileID: 0}
+  musicClip: {fileID: 8300000, guid: 831ca4298b6f37047b3d176e7bc5803f, type: 3}
   sfxClip: {fileID: 8300000, guid: 19544dc79a3def34d89ecc3aba92e834, type: 3}
-  CoinClip: {fileID: 0}
+  CoinClip: {fileID: 8300000, guid: 18d7f1d10d6e1e34babd882188948888, type: 3}
+  PowerUp: {fileID: 8300000, guid: 7a7aa114044860a4c99c9acd1d9a562d, type: 3}
+  GameOver: {fileID: 8300000, guid: 172e1d092aff97d4d8a26b813989f417, type: 3}
 --- !u!4 &2016197699
 Transform:
   m_ObjectHideFlags: 0
