@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     public bool reducirisOn;
     public bool incrementarIsOn;
     private DistanceScore _distanceScore;
-    public int speed;
+    public int speed = 15;
     
     public bool detectSwipeAfterRelease = false;
 
@@ -222,7 +222,7 @@ public class Movement : MonoBehaviour
 
     void Zmovimiento()
     {
-        speed =500;
+        
         movement.z = speed;
         /*if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
         {

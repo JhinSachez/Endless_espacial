@@ -4640,7 +4640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1500929057
 Transform:
   m_ObjectHideFlags: 0
@@ -4782,7 +4782,7 @@ MonoBehaviour:
   ReducirDuracion: 5
   reducirisOn: 0
   incrementarIsOn: 0
-  speed: 0
+  speed: 500
   detectSwipeAfterRelease: 0
   SWIPE_THRESHOLD: 20
 --- !u!143 &1564870453

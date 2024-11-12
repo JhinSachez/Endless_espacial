@@ -57,6 +57,7 @@ public class ObjetosAparecer : MonoBehaviour
     
     IEnumerator Disappear2()
     {
+        RenderSettings.skybox.SetColor("_Tint", Color.black);
         yield return new WaitForSecondsRealtime(5);
         Space.SetActive(true);
     }
