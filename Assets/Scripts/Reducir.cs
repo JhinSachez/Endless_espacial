@@ -25,6 +25,8 @@ public class Reducir : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.instance.PlayPowerUp();
+
             gameObject.SetActive(false);
            
         }

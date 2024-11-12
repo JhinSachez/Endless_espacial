@@ -741,7 +741,9 @@ MonoBehaviour:
   sfxSource: {fileID: 1177908561}
   musicClip: {fileID: 8300000, guid: f8d089b62e329974196cbc74d6c7b166, type: 3}
   sfxClip: {fileID: 8300000, guid: 19544dc79a3def34d89ecc3aba92e834, type: 3}
-  CoinClip: {fileID: 0}
+  CoinClip: {fileID: 8300000, guid: 911b940e02a5c8441829782398bacd9d, type: 3}
+  PowerUp: {fileID: 8300000, guid: 432b2018d52091b4ea7f99a35193c679, type: 3}
+  GameOver: {fileID: 8300000, guid: a2527fa1bed70b149b7d46e66dfd638f, type: 3}
 --- !u!4 &620798779
 Transform:
   m_ObjectHideFlags: 0
