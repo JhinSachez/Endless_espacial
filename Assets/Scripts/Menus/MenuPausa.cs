@@ -41,12 +41,6 @@ public class MenuPausa : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void Cerrar ()
-    {
-        Debug.Log("cerrando juego");
-        Application.Quit();
-    }
-
     void OnGameStateChanged(Game_State _gs)
     {
         isOnPlay = _gs == Game_State.Play;

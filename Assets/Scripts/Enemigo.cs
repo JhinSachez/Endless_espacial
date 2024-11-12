@@ -28,5 +28,17 @@ public class Enemigo : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("choco con el enemigo");
+        }
+
+
+        if (collider.CompareTag("Player") && PlayerShleld._isShieldOn == true)
+        {
+            PlayerShleld._isShieldOn = false;
+            Destroy(gameObject);
+        }
     }
 }

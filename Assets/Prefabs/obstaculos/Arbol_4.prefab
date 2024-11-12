@@ -63,6 +63,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arbol_4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemigo
+      objectReference: {fileID: 0}
     - target: {fileID: 2437759180250128705, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -135,7 +145,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

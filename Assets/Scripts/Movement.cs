@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    async void Update()
     {
         foreach (Touch touch in Input.touches) {
             if (touch.phase == TouchPhase.Began) {
@@ -113,14 +113,17 @@ public class Movement : MonoBehaviour
             }
         }
         CheckInputs();
-        /*if (_distanceScore.distance >= 50 && pos.y >= 0.5f)
+        if (_distanceScore.distance >= 10000 && pos.y >= 0.5f)
         {
             movement.y = 5;
-            if (_distanceScore.distance >= 50 && pos.y >= 5)
+            movement.z = 0;
+          
+            if (_distanceScore.distance >= 10000 && pos.y >= 60)
             {
                 movement.y = 0;
+                movement.z = speed;
             }
-        }*/
+        }
         cc.Move(movement * Time.deltaTime);
         Zmovimiento();
     }
@@ -208,20 +211,20 @@ public class Movement : MonoBehaviour
 
     void Zmovimiento()
     {
-        speed = 10;
+        speed = 15;
         movement.z = speed;
-        if (_distanceScore.distance >= 250 && reducirisOn == false && incrementarIsOn == false)
+        if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
         {
-            speed = 13;
+            speed = 19;
             movement.z = speed;
-            if (_distanceScore.distance >= 400)
+            if (_distanceScore.distance >= 1000)
             {
-                speed = 16;
+                speed = 25;
                 movement.z = speed;
             }
-            if (_distanceScore.distance >= 550)
+            if (_distanceScore.distance >= 1800)
             {
-                speed = 18;
+                speed = 30;
                 movement.z = speed;
             }
         }
@@ -254,7 +257,7 @@ public class Movement : MonoBehaviour
     {
         if (incrementarIsOn)
         {
-            speed = 23;
+            speed = 40;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
 

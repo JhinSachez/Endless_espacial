@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnetSpeed: 1
+  detector: {fileID: 5596154494231148478, guid: 3918c811a989b9248879b1b04e5fbd1c,
+    type: 3}
   Speed: 5
   Timer: 0
   timeToDeactivated: 15
