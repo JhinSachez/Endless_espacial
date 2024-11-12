@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bb09f4cd3811f419e6932f922800f9, type: 3}
   m_Name: skin1
   m_EditorClassIdentifier: 
-  <EntryGraphic>k__BackingField: {fileID: 0}
-  <Description>k__BackingField: 
+  <EntryGraphic>k__BackingField: {fileID: 21300000, guid: d231bad3cddf9564eb9643f0b08bb06d,
+    type: 3}
+  <Description>k__BackingField: Precio 110
   levelNameToLoad: 
