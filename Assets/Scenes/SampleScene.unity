@@ -1492,7 +1492,7 @@ Transform:
   m_GameObject: {fileID: 454061035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09, y: 4.498, z: -1.222}
+  m_LocalPosition: {x: 0.09, y: 3.32, z: -1.222}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1518,7 +1518,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!23 &454061038
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1539,7 +1539,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea2ffd6db3f24d243b8c7c8ceb9fddba, type: 2}
+  - {fileID: 2100000, guid: b811e1a14bb3a584caca2346e4d715f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1568,7 +1568,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454061035}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2540817853737639666, guid: d27af2794a25d604f8ae4f946b282235, type: 3}
 --- !u!1 &466539408
 GameObject:
   m_ObjectHideFlags: 0
@@ -5150,6 +5150,9 @@ MonoBehaviour:
   - prefab: {fileID: 5114543990319265558, guid: 9db1c7bda80fdbf47b217aa2499d48c0,
       type: 3}
     poolSize: 3
+  - prefab: {fileID: 8179546653463965547, guid: 034bea62c60daf94bb7bcc734abae87d,
+      type: 3}
+    poolSize: 3
 --- !u!4 &1738764917
 Transform:
   m_ObjectHideFlags: 0
@@ -5323,7 +5326,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.03
   m_Pitch: 1
   Loop: 1
   Mute: 0

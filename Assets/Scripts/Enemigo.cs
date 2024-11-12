@@ -12,6 +12,8 @@ public class Enemigo : MonoBehaviour
     {
         if (collider.CompareTag("Player") && PlayerShleld._isShieldOn == false)
         {
+            AudioManager.instance.PlayGameOver();
+
             collider.GetComponent<CombateJugador>().TakeDamage(damage);
             gameObject.SetActive(false);
         }

@@ -23,7 +23,7 @@ public class Iman : MonoBehaviour
             AudioManager.instance.PlayPowerUp();
 
             Coin._magnetOn = true;
-            Destroy(gameObject); 
+            gameObject.SetActive(false);
         }
     }
 
