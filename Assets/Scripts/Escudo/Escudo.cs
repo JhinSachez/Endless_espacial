@@ -19,6 +19,8 @@ public class Escudo : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.instance.PlayPowerUp();
+
             PlayerShleld._isShieldOn = true;
             gameObject.SetActive(false);
         }

@@ -32,6 +32,9 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player") && !yaColisionado)
         {
             yaColisionado = true;
+
+            AudioManager.instance.PlayMoneda();
+
             GameManager.GetInstance().SumarPuntos(1);  // Sumar puntos al jugador
             gameObject.SetActive(false);  // Desactivar moneda
         }
