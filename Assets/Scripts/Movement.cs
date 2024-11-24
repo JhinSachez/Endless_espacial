@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     public bool reducirisOn;
     public bool incrementarIsOn;
     private DistanceScore _distanceScore;
-    public int speed = 15;
+    public int speed;
     
     public bool detectSwipeAfterRelease = false;
 
@@ -222,9 +222,9 @@ public class Movement : MonoBehaviour
 
     void Zmovimiento()
     {
-        
+        speed = 15;
         movement.z = speed;
-        /*if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
+        if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
         {
             speed = 19;
             movement.z = speed;
@@ -245,7 +245,7 @@ public class Movement : MonoBehaviour
         }else if (incrementarIsOn == true)
         {
             IncrementarVelocidad();
-        }*/
+        }
     }
 
     public void ReducirVelocidad()
@@ -285,12 +285,14 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
+            incrementarIsOn = false;
           
         }
         
         if (other.CompareTag("PowerUpIncrementar"))
         {
             incrementarIsOn = true;
+            reducirisOn = false;
             Debug.Log("Incrementar activado");
         }
         

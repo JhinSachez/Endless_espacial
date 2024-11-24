@@ -40,6 +40,7 @@ public class ObjetosAparecer : MonoBehaviour
         {
             IsOnSky = false;
             IsOnSpace = true;
+            Transicion.SetActive(true);
 
             StartCoroutine(Disappear2());
         }
@@ -65,7 +66,7 @@ public class ObjetosAparecer : MonoBehaviour
     IEnumerator Disappear2()
     {
         
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(3);
         cam.backgroundColor = Color.black;
         Space.SetActive(true);
     }
