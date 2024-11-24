@@ -14,9 +14,15 @@ public class ObjetosAparecer : MonoBehaviour
     public GameObject Sky;
     public GameObject Space;
     public GameObject Transicion;
+    public Camera cam;
 
     // Lista de spawners para activar/desactivar según el estado del juego
     public List<MultiplePoolSpawner> spawners;
+
+    private void Start()
+    {
+        cam.clearFlags = CameraClearFlags.SolidColor;
+    }
 
     void Update()
     {
@@ -51,14 +57,16 @@ public class ObjetosAparecer : MonoBehaviour
 
     IEnumerator Disappear()
     {
+        
         yield return new WaitForSecondsRealtime(5);
         Sky.SetActive(true);
     }
     
     IEnumerator Disappear2()
     {
-        RenderSettings.skybox.SetColor("_Tint", Color.black);
+        
         yield return new WaitForSecondsRealtime(5);
+        cam.backgroundColor = Color.black;
         Space.SetActive(true);
     }
 
