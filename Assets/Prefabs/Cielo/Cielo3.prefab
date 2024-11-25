@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4991245293393754531}
   m_Layer: 0
   m_Name: Cielo3
-  m_TagString: Untagged
+  m_TagString: Cielo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

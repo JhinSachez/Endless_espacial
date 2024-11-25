@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EntryGraphic>k__BackingField: {fileID: 21300000, guid: e05b2bc7dd2a452469f79b729a063917,
     type: 3}
-  <Description>k__BackingField: Muevete de derecha a izquierda tocando la pantalla
-    para asi evitar los obstaculos
+  <Description>k__BackingField: "Muevete de derecha a izquierda tocando la pantalla
+    para as\xED evitar obst\xE1culos para no acabar la partida.\r\n"
   levelNameToLoad: 

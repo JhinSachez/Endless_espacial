@@ -36,7 +36,6 @@ public class Reducir : MonoBehaviour
     {
         if (!isOnPlay) return;
         
-        transform.Translate(Vector3.back * Speed * Time.deltaTime);
         Timer += Time.deltaTime;
 
         if (Timer > timeToDeactivated)

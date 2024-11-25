@@ -123,6 +123,17 @@ public class Movement : MonoBehaviour
                 movement.y = 0;
                 movement.z = speed;
             }
+
+            if (_distanceScore.distance >= 20000 && pos.y >= 60)
+            {
+                movement.y = 5;
+                movement.z = 0;
+                if (_distanceScore.distance >= 20000 && pos.y >= 100)
+                {
+                    movement.y = 0;
+                    movement.z = speed;
+                }
+            }
         }
         cc.Move(movement * Time.deltaTime);
         Zmovimiento();
@@ -274,12 +285,14 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
+            incrementarIsOn = false;
           
         }
         
         if (other.CompareTag("PowerUpIncrementar"))
         {
             incrementarIsOn = true;
+            reducirisOn = false;
             Debug.Log("Incrementar activado");
         }
         

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EntryGraphic>k__BackingField: {fileID: 21300000, guid: efbad3f95848872468f82fc7a4e87a95,
     type: 3}
-  <Description>k__BackingField: Tu mision es llegar lo mas lejos posible sin chocarte,
-    agarrando las vacas
+  <Description>k__BackingField: "Tu misi\xF3n es llegar lo m\xE1s lejos posible sin
+    chocarte, agarrando vacas que se cruzan en tu camino."
   levelNameToLoad: 

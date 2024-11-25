@@ -16,6 +16,7 @@ TagManager:
   - Tierra
   - Cielo
   - powerUp
+  - Espacio
   layers:
   - Default
   - TransparentFX
