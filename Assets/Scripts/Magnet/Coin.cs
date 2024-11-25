@@ -84,7 +84,7 @@ public class Coin : MonoBehaviour
     IEnumerator Atraer()
     {
 
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.3f);
 
         transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
 
@@ -96,6 +96,6 @@ public class Coin : MonoBehaviour
 
         StartCoroutine(Atraer());
 
-        Invoke("EndEffect", 20f);
+        Invoke("EndEffect", 10f);
     }
 }

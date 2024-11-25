@@ -31,7 +31,5 @@ public class Iman : MonoBehaviour
     void Update()
     {
         if (!isOnPlay) return;
-
-        transform.Translate(Vector3.back * 5f * Time.deltaTime);
     }
 }

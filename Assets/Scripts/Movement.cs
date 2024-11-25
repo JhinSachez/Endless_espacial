@@ -257,7 +257,7 @@ public class Movement : MonoBehaviour
     {
         if (incrementarIsOn)
         {
-            speed = 40;
+            speed = 70;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
 

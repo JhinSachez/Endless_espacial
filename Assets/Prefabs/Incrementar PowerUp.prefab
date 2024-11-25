@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3300312862586671615}
-  - component: {fileID: 604038380748978389}
   - component: {fileID: 5445434250949790354}
   - component: {fileID: 2027031626512085316}
+  - component: {fileID: 6273037376311955422}
   m_Layer: 0
   m_Name: Incrementar PowerUp
   m_TagString: PowerUpIncrementar
@@ -35,29 +35,6 @@ Transform:
   - {fileID: 8965122361601598289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &604038380748978389
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7713196579184825078}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.0123003
-  m_Height: 5.02893
-  m_Direction: 1
-  m_Center: {x: 0.18512821, y: 1.5144651, z: -0.10506749}
 --- !u!114 &5445434250949790354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +77,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6273037376311955422
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713196579184825078}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7356896, y: 1.8926822, z: 1}
+  m_Center: {x: 0.17060196, y: 0.98931473, z: 0}
 --- !u!1 &8849106473592544732
 GameObject:
   m_ObjectHideFlags: 0

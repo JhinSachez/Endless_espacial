@@ -92,9 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7280508429482720747}
-  - component: {fileID: 2380270930571110251}
   - component: {fileID: 8854212940825100855}
   - component: {fileID: 7906172507218966178}
+  - component: {fileID: 198443356132770223}
   m_Layer: 0
   m_Name: ReducirPowerUp
   m_TagString: PowerUpRedicir
@@ -118,29 +118,6 @@ Transform:
   - {fileID: 3637502662083211038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2380270930571110251
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8320700726970906904}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.88957
-  m_Height: 2.2192252
-  m_Direction: 1
-  m_Center: {x: 0.2059871, y: 0.8346404, z: -0.00000011920929}
 --- !u!114 &8854212940825100855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +160,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &198443356132770223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8320700726970906904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8078403, y: 1.7059566, z: 1}
+  m_Center: {x: 0.16686428, y: 1.0637496, z: 0}
