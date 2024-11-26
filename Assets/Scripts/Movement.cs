@@ -252,7 +252,7 @@ public class Movement : MonoBehaviour
     {
         if (reducirisOn)
         {
-            speed = 8;
+            speed = 2;
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
             if (ReducirDuracion <= 0)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Reducir : MonoBehaviour
 {
-    public float Speed = 5f;
     bool isOnPlay;
     public float Timer = 0;
     public float timeToDeactivated = 15;
