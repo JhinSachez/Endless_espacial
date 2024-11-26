@@ -27,6 +27,11 @@ public class Coin : MonoBehaviour
         isOnPlay = _gs == Game_State.Play;
     }
 
+    private void OnEnable()
+    {
+        yaColisionado = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !yaColisionado)

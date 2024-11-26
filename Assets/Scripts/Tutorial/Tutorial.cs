@@ -39,6 +39,7 @@ public class Tutorial : MonoBehaviour
         switch (tutorialStep)
         {
             case 0:
+                break;
                 
         }
     }

@@ -48,6 +48,7 @@ public class SoundManager : MonoBehaviour
         AudioSource localAudioSource = GetAudioSource();
         localAudioSource.clip = soundDataBase.GetAudio(_audioToPlay);
         localAudioSource.transform.position = _pos;
+        localAudioSource.Stop();
         localAudioSource.Play();
         Debug.Log("audio monedas");
     }
