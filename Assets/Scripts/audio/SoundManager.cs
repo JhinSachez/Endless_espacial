@@ -17,7 +17,15 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         selfAudioSource = GetComponent<AudioSource>();
     }
 
@@ -40,7 +48,11 @@ public class SoundManager : MonoBehaviour
 
     public void SetAudio(AUDIO_TYPE _audioToPlay)
     {
-        selfAudioSource.PlayOneShot(soundDataBase.GetAudio(_audioToPlay));
+        AudioSource localAudioSource = GetAudioSource();
+        localAudioSource.clip = soundDataBase.GetAudio(_audioToPlay);
+        localAudioSource.Stop();
+        localAudioSource.Play();
+        //selfAudioSource.PlayOneShot(soundDataBase.GetAudio(_audioToPlay));
     }
 
     public void SetAudioWithPosition(AUDIO_TYPE _audioToPlay, Vector3 _pos)
@@ -62,7 +74,7 @@ public class SoundManager : MonoBehaviour
                 return audioSourcesCreated[i];
             }
         }
-        AudioSource newAudioSource = Instantiate(audiosourcePrefab).GetComponent<AudioSource>();
+        AudioSource newAudioSource = Instantiate(audiosourcePrefab,transform).GetComponent<AudioSource>();
         audioSourcesCreated.Add(newAudioSource);
         return newAudioSource;
     }

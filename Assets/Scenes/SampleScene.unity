@@ -210,18 +210,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 238922660}
-        m_TargetAssemblyTypeName: MenuGameOver, Assembly-CSharp
-        m_MethodName: MenuInicial
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuInicial
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 238922662}
         m_TargetAssemblyTypeName: UIAudio, Assembly-CSharp
         m_MethodName: PlaySound
@@ -232,6 +220,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 238922660}
+        m_TargetAssemblyTypeName: MenuGameOver, Assembly-CSharp
+        m_MethodName: MenuInicial
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MenuInicial
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &24433112
@@ -1593,9 +1593,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 238922660}
-        m_TargetAssemblyTypeName: MenuGameOver, Assembly-CSharp
-        m_MethodName: Reinciar
+      - m_Target: {fileID: 238922662}
+        m_TargetAssemblyTypeName: UIAudio, Assembly-CSharp
+        m_MethodName: PlaySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1605,9 +1605,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 238922662}
-        m_TargetAssemblyTypeName: UIAudio, Assembly-CSharp
-        m_MethodName: PlaySound
+      - m_Target: {fileID: 238922660}
+        m_TargetAssemblyTypeName: MenuGameOver, Assembly-CSharp
+        m_MethodName: Reinciar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4065,7 +4065,8 @@ AudioSource:
   m_GameObject: {fileID: 1308351956}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3450418464712354037, guid: a567dc1c2ba497340a2f0bdb4e6fb204,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4817,6 +4818,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457047896}
   m_CullTransparentMesh: 1
+--- !u!1 &1476074103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476074104}
+  - component: {fileID: 1476074105}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476074104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476074103}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2016197699}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1476074105
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476074103}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 3450418464712354037, guid: a567dc1c2ba497340a2f0bdb4e6fb204,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1504517160
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,6 +6476,7 @@ Transform:
   m_Children:
   - {fileID: 1920355165}
   - {fileID: 1308351958}
+  - {fileID: 1476074104}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2022877677 stripped
@@ -6723,7 +6854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -346, y: -1012}
+  m_AnchoredPosition: {x: -346, y: -806}
   m_SizeDelta: {x: 277, y: 187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &451709435539087912
@@ -6810,7 +6941,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 5.1597, y: -265}
-  m_SizeDelta: {x: 1096, y: 166.1279}
+  m_SizeDelta: {x: 607, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1165177377991005665
 CanvasRenderer:
@@ -7155,7 +7286,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 11, y: 420}
-  m_SizeDelta: {x: 836.32, y: 126.7572}
+  m_SizeDelta: {x: 607, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3233148325766249390
 GameObject:
@@ -7265,8 +7396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0050507, y: 0.000061035}
-  m_SizeDelta: {x: 1080, y: 2316}
+  m_AnchoredPosition: {x: 0.01001, y: -4.71}
+  m_SizeDelta: {x: 1080, y: 1910.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4848000986994051042
 CanvasRenderer:
@@ -7706,10 +7837,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5547132117033918114}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 238922662}
+        m_TargetAssemblyTypeName: UIAudio, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7758,8 +7889,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.3241, y: 916.0649}
-  m_SizeDelta: {x: 1734.9204, y: 220.8699}
+  m_AnchoredPosition: {x: 7.4297, y: 745.7589}
+  m_SizeDelta: {x: 1551.1938, y: 197.4822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &8587755210340614935
 RectTransform:

@@ -6,7 +6,8 @@ public class UIAudio : MonoBehaviour
 {
     public void PlaySound()
     {
-        SoundManager.GetInstance().SetAudioWithPosition(AUDIO_TYPE.SHOOT, transform.position);
+        //if(SoundManager.GetInstance().GetAudioSource() == null) return;
+        SoundManager.GetInstance().SetAudio(AUDIO_TYPE.SHOOT);
         Debug.Log("audio");
     }
 }
