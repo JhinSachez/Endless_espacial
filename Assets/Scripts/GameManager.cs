@@ -20,46 +20,53 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public Action<Game_State> OnGameStateChanged;
-    public Game_State currentGameState = Game_State.Play;
-    public int puntosTotales = 0;
-    
+    public Action<Game_State> OnGameStateChanged;  // Evento para cambiar el estado del juego
+    public Game_State currentGameState = Game_State.Play;  // Estado actual del juego
+
+    private const string monedasKey = "MonedasTotales";  // Clave para almacenar las monedas en PlayerPrefs
+
+    private void Start()
+    {
+        CargarMonedas();  // Cargar las monedas almacenadas desde PlayerPrefs
+    }
+
     public void ChangeGameState(Game_State _newGameState)
     {
         if (currentGameState == _newGameState) return;
 
         currentGameState = _newGameState;
-        Debug.Log("Game state changed to:" + currentGameState);
-        if (OnGameStateChanged != null)
-        {
-            OnGameStateChanged.Invoke(currentGameState);
-        }
+        OnGameStateChanged?.Invoke(currentGameState);
     }
-    public void SumarPuntos(int puntos)
+
+    public int ObtenerMonedas()
     {
-        puntosTotales += puntos;
+        return PlayerPrefs.GetInt(monedasKey, 0);  // Devuelve las monedas guardadas o 0 si no existen
     }
-    
-    public void Update()
+
+    public void AgregarMonedas(int cantidad)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        int monedasActuales = ObtenerMonedas();
+        monedasActuales += cantidad;
+        PlayerPrefs.SetInt(monedasKey, monedasActuales);  // Guardar monedas actualizadas
+        PlayerPrefs.Save();
+
+        // Notificar a la UI
+        MonedasTotalesUI ui = FindObjectOfType<MonedasTotalesUI>();
+        if (ui != null)
         {
-            ChangeGameState(Game_State.Play);
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-           ChangeGameState(Game_State.Pause);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            ChangeGameState(Game_State.Game_Over);
+            ui.OnCoinsUpdated();
         }
     }
 
-    // Método para obtener la puntuación actual
-    public int ObtenerPuntuacion()
+    private void CargarMonedas()
     {
-        return puntosTotales;
+        Debug.Log("Monedas cargadas: " + ObtenerMonedas());
+    }
+
+    public void ResetearMonedas()
+    {
+        PlayerPrefs.SetInt(monedasKey, 0);
+        PlayerPrefs.Save();
     }
 }
 

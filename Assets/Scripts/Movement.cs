@@ -283,12 +283,12 @@ public class Movement : MonoBehaviour
             Debug.Log("Incrementar activado");
         }
         
-        if (other.CompareTag("coin"))
+      /*  if (other.CompareTag("coin"))
         {
             // Lógica para recolectar la moneda
             GameManager.GetInstance().SumarPuntos(1);
             other.gameObject.SetActive(false);  // Desactivar la moneda
-        }
+        }*/
         
     }
     

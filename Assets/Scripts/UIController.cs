@@ -6,8 +6,8 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    public TextMeshProUGUI textoPuntuacion; // Referencia al componente TextMeshPro en la UI
-    public GameObject texto;
+ /*   public TextMeshProUGUI textoPuntuacion; // Referencia al componente TextMeshPro en la UI
+    public GameObject texto; // Texto que muestra la puntuación actual
 
     private void Start()
     {
@@ -17,21 +17,22 @@ public class UIController : MonoBehaviour
     }
 
     // Método para actualizar el TextMeshPro con la puntuación actual
-    public void ActualizarPuntuacion(int puntos)
+    public void ActualizarPuntuacion()
     {
         textoPuntuacion.text = "Vacas: " + GameManager.GetInstance().ObtenerPuntuacion().ToString();
     }
-    
+
     void OnGameStateChange(Game_State _gs)
     {
         if (_gs == Game_State.Game_Over)
         {
-                texto.SetActive(false);
+            texto.SetActive(false); // Oculta el texto de la puntuación al finalizar el juego
         }
     }
+
     private void Update()
     {
-        ActualizarPuntuacion(1);
+        ActualizarPuntuacion(); // Actualiza constantemente la puntuación en pantalla
     }
-    
+    */
 }

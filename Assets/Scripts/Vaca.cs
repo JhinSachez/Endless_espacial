@@ -5,7 +5,7 @@ using TMPro;
 
 public class Vaca : MonoBehaviour
 {
-    #region ruben iman
+   /* #region ruben iman
     public static bool _magnetOn = false;
     public float magnetSpeed;
     private GameObject _player;
@@ -95,5 +95,5 @@ public class Vaca : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-    }
+    }*/
 }
