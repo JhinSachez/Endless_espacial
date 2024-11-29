@@ -10,10 +10,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource sfxSource;
 
     [Header("Clips to play")]
-    [SerializeField] AudioClip musicClip; // bgm
+    [SerializeField] AudioClip musicClip; 
     [SerializeField] AudioClip sfxClip;
-    [SerializeField] AudioClip CoinClip; 
-                                        
+    [SerializeField] AudioClip MonedaClip;
+    [SerializeField] AudioClip PowerUp;
+    [SerializeField] AudioClip GameOver;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -38,8 +41,18 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(sfxClip);
     }
 
-    public void PlayCoin()
+    public void PlayMoneda()
     {
-        sfxSource.PlayOneShot(CoinClip);
+        sfxSource.PlayOneShot(MonedaClip);
+    }
+
+    public void PlayPowerUp()
+    {
+        sfxSource.PlayOneShot(PowerUp);
+    }
+
+    public void PlayGameOver()
+    {
+        sfxSource.PlayOneShot(GameOver);
     }
 }

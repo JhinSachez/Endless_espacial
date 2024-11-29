@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Reducir : MonoBehaviour
 {
-    public float Speed = 5f;
     bool isOnPlay;
     public float Timer = 0;
     public float timeToDeactivated = 15;
@@ -25,6 +24,8 @@ public class Reducir : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.instance.PlayPowerUp();
+
             gameObject.SetActive(false);
            
         }
@@ -34,7 +35,6 @@ public class Reducir : MonoBehaviour
     {
         if (!isOnPlay) return;
         
-        transform.Translate(Vector3.back * Speed * Time.deltaTime);
         Timer += Time.deltaTime;
 
         if (Timer > timeToDeactivated)

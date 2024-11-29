@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,7 @@ public class MenuPausa : MonoBehaviour
         //Time.timeScale = 0f;
         botonPausa.SetActive(false);
         menuPausas.SetActive(true);
+        
     }
 
     public void Reanudar()

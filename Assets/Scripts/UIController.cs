@@ -28,6 +28,10 @@ public class UIController : MonoBehaviour
         {
             texto.SetActive(false); // Oculta el texto de la puntuación al finalizar el juego
         }
+        if (_gs == Game_State.Pause)
+        {
+            texto.SetActive(false);
+        }
     }
 
     private void Update()

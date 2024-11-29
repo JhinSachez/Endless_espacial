@@ -20,8 +20,10 @@ public class Iman : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.instance.PlayPowerUp();
+
             Coin._magnetOn = true;
-            Destroy(gameObject); 
+            gameObject.SetActive(false);
         }
     }
 
@@ -29,7 +31,5 @@ public class Iman : MonoBehaviour
     void Update()
     {
         if (!isOnPlay) return;
-
-        transform.Translate(Vector3.back * 5f * Time.deltaTime);
     }
 }
