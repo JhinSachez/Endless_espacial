@@ -9,10 +9,7 @@ public class Coin : MonoBehaviour
     public float magnetSpeed = 5f;  // Velocidad del efecto de imán
     private GameObject _player;  // Referencia al jugador
 
-    public float Speed = 5f;  // Velocidad de movimiento de la moneda
     private bool isOnPlay;  // Controla si el juego está en ejecución
-    private float Timer = 0;  // Temporizador para la desactivación de la moneda
-    public float timeToDeactivated = 15f;  // Tiempo antes de desactivar la moneda
     private bool yaColisionado = false;  // Verifica si ya ha colisionado con el jugador
 
     void Start()
@@ -34,6 +31,11 @@ public class Coin : MonoBehaviour
             yaColisionado = true;
             RecolectarMoneda();  // Manejar la recolección de la moneda
         }
+        else if (other.CompareTag("InvisibleBarrier"))
+        {
+            // Desactivar la moneda al tocar la barrera invisible
+            gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -45,17 +47,6 @@ public class Coin : MonoBehaviour
         {
             MagnetEffect();
         }
-
-        // Temporizador para desactivar la moneda automáticamente
-        Timer += Time.deltaTime;
-        if (Timer > timeToDeactivated)
-        {
-            Timer = 0;
-            gameObject.SetActive(false);
-        }
-
-        // Movimiento de la moneda hacia atrás
-        transform.Translate(Vector3.back * Speed * Time.deltaTime);
     }
 
     private void RecolectarMoneda()

@@ -17,6 +17,7 @@ TagManager:
   - Cielo
   - powerUp
   - Espacio
+  - InvisibleBarrier
   layers:
   - Default
   - TransparentFX

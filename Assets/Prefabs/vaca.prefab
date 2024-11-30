@@ -118,6 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3ad4fac0eeea045a53a65172ac4b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnetSpeed: 1
-  Speed: 5
-  timeToDeactivated: 15
+  magnetSpeed: 5
