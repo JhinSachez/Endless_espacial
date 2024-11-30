@@ -2,108 +2,166 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class StoreCarousel : MonoBehaviour
 {
-     [Header("Carrusel Settings")]
-    [SerializeField] private List<StoreItem> storeItems; // Lista de ítems de la tienda
-    [SerializeField] private RectTransform contentBoxHorizontal; // Contenedor para los ítems
-    [SerializeField] private StoreItemUI itemPrefab; // Prefab de los ítems
-    [SerializeField] private ScrollRect scrollRect; // Componente de desplazamiento
-
-    [Header("Indicators")]
-    [SerializeField] private Transform indicatorParent; // Contenedor para los indicadores
-    [SerializeField] private CarouselIndicators indicatorPrefab; // Prefab de indicadores
+        [Header("Parts Setup")]
+    [SerializeField] private List<StoreItem> storeItems = new List<StoreItem>(); // Lista de StoreItem (ScriptableObject)
+        
+    [Space]
+    [SerializeField] private ScrollRect scrollRect;
+    
+    [Space]
+    [SerializeField] private RectTransform contentBoxHorizontal;
+    [SerializeField] private StoreItemUI itemPrefab; // Prefab para los ítems
+    private List<StoreItemUI> _storeItemUIs = new List<StoreItemUI>();
+        
+    [Space]
+    [SerializeField] private Transform indicatorParent;
+    [SerializeField] private CarouselIndicators indicatorPrefab;
     private List<CarouselIndicators> _indicators = new List<CarouselIndicators>();
-
-    [Header("Animation")]
-    [SerializeField, Range(0.25f, 1f)] private float scrollDuration = 0.5f;
+    
+    [Header("Animation Setup")]
+    [SerializeField, Range(0.25f, 1f)] private float duration = 0.5f;
     [SerializeField] private AnimationCurve easeCurve;
-
+    
+    [Header("Auto Scroll Setup")]
+    [SerializeField] private bool autoScroll = false;
+    [SerializeField] private float autoScrollInterval = 5f;
+    private float _autoScrollTimer;
+    
     private int _currentIndex = 0;
     private Coroutine _scrollCoroutine;
 
-    private void Start()
+    private void Reset()
     {
-        SetupCarousel();
+        scrollRect = GetComponentInChildren<ScrollRect>();
     }
 
-    private void SetupCarousel()
+    private void Start()
     {
-        float itemWidth = itemPrefab.GetComponent<RectTransform>().rect.width; // Ancho del ítem
-        float spacing = 20f; // Espaciado entre ítems
-        float contentWidth = 0f; // Ancho total del contenedor
-    
-        for (int i = 0; i < storeItems.Count; i++)
+        float itemSpacing = 20f; // Ajusta el valor de espaciado según tus necesidades
+        float contentWidth = 0f; // Esta variable determinará el tamaño total del contenedor
+
+        foreach (var item in storeItems)
         {
-            // Crear el ítem visual
-            var storeItemUI = Instantiate(itemPrefab, contentBoxHorizontal);
-            storeItemUI.Setup(storeItems[i]);
+            // Instanciamos el prefab para cada StoreItem
+            StoreItemUI storeItemUI = Instantiate(itemPrefab, contentBoxHorizontal);
+            storeItemUI.Setup(item);
 
-            // Calcular la posición del ítem en el eje horizontal
+            // Calculamos el ancho de cada ítem
             RectTransform itemRect = storeItemUI.GetComponent<RectTransform>();
-            itemRect.anchoredPosition = new Vector2((itemWidth + spacing) * i, 0);
+            float itemWidth = itemRect.rect.width;
         
-            // Incrementar el ancho total del contenedor
-            contentWidth += itemWidth + spacing;
+            // Posicionamos el ítem
+            itemRect.anchoredPosition = new Vector2(contentWidth, 0);
+            contentWidth += itemWidth + itemSpacing;
 
-            // Crear el indicador correspondiente
+            // Añadimos un indicador para cada ítem
             var indicator = Instantiate(indicatorPrefab, indicatorParent);
-            indicator.Initialize(() => ScrollToSpecificIndex(i));
+            int index = storeItems.IndexOf(item);
+            indicator.Initialize(() => ScrollToSpecificIndex(index));
             _indicators.Add(indicator);
         }
 
-        // Ajustar el tamaño del contenedor
+        // Ajustamos el tamaño del contenedor horizontal
         contentBoxHorizontal.sizeDelta = new Vector2(contentWidth, contentBoxHorizontal.sizeDelta.y);
 
         // Activar el primer indicador
         if (_indicators.Count > 0)
+        {
             _indicators[0].Activate(0.1f);
+        }
     }
 
-    public void ScrollToNext()
+    private void ClearCurrentIndex()
     {
-        ChangeCurrentIndex((_currentIndex + 1) % storeItems.Count);
-    }
-
-    public void ScrollToPrevious()
-    {
-        ChangeCurrentIndex((_currentIndex - 1 + storeItems.Count) % storeItems.Count);
+        _indicators[_currentIndex].Deactivate(duration);
     }
 
     private void ScrollToSpecificIndex(int index)
     {
-        ChangeCurrentIndex(index);
+        ClearCurrentIndex();
+        ScrollTo(index);
     }
 
-    private void ChangeCurrentIndex(int newIndex)
+    public void ScrollToNext()
     {
-        _indicators[_currentIndex].Deactivate(scrollDuration);
-        _currentIndex = newIndex;
-        _indicators[_currentIndex].Activate(scrollDuration);
+        ClearCurrentIndex();
+        _currentIndex = (_currentIndex + 1) % _storeItemUIs.Count;
+        ScrollTo(_currentIndex);
+    }
 
-        float targetHorizontalPosition = (float)_currentIndex / (storeItems.Count - 1);
+    public void ScrollToPrevious()
+    {
+        ClearCurrentIndex();
+        _currentIndex = (_currentIndex - 1 + _storeItemUIs.Count) % _storeItemUIs.Count;
+        ScrollTo(_currentIndex);
+    }
+
+    private void ScrollTo(int index)
+    {
+        _currentIndex = index;
+        _autoScrollTimer = autoScrollInterval;
+        float targetHorizontalPosition = (float)_currentIndex / (_storeItemUIs.Count - 1);
 
         if (_scrollCoroutine != null)
             StopCoroutine(_scrollCoroutine);
 
-        _scrollCoroutine = StartCoroutine(LerpToPosition(targetHorizontalPosition));
+        _scrollCoroutine = StartCoroutine(LerpToPos(targetHorizontalPosition));
+
+        // Aquí ya no se necesita la descripción, así que la hemos eliminado.
+        _indicators[_currentIndex].Activate(duration);
     }
 
-    private IEnumerator LerpToPosition(float targetPosition)
-    {
+    private IEnumerator LerpToPos(float targetHorizontalPosition)
+    {  
         float elapsedTime = 0f;
-        float initialPosition = scrollRect.horizontalNormalizedPosition;
+        float initialPos = scrollRect.horizontalNormalizedPosition;
 
-        while (elapsedTime <= scrollDuration)
+        if (duration > 0)
         {
-            float easedValue = easeCurve.Evaluate(elapsedTime / scrollDuration);
-            scrollRect.horizontalNormalizedPosition = Mathf.Lerp(initialPosition, targetPosition, easedValue);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+            while (elapsedTime <= duration)
+            {
+                float easeValue = easeCurve.Evaluate(elapsedTime / duration);
 
-        scrollRect.horizontalNormalizedPosition = targetPosition;
+                float newPosition = Mathf.Lerp(initialPos, targetHorizontalPosition, easeValue);
+
+                scrollRect.horizontalNormalizedPosition = newPosition;
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        
+        scrollRect.horizontalNormalizedPosition = targetHorizontalPosition;
+    }
+
+    private void Update()
+    {
+        if (!autoScroll) 
+            return;
+        
+        _autoScrollTimer -= Time.deltaTime;
+        if (_autoScrollTimer <= 0)
+        {
+            ScrollToNext();
+            _autoScrollTimer = autoScrollInterval;
+        }
+    }
+
+    public void OnEndDrag(PointerEventData data)
+    {
+        if (data.delta.x != 0)
+        {
+            if (data.delta.x > 0)
+                ScrollToPrevious();
+            else if (data.delta.x < 0)
+                ScrollToNext();
+        }
+        else
+            ScrollToSpecificIndex(_currentIndex);
     }
 }

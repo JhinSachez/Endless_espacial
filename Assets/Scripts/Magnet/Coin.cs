@@ -5,31 +5,26 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public static bool _magnetOn = false;
-    public float magnetSpeed;
-    private GameObject _player;
+    public static bool _magnetOn = false;  // Variable para el efecto de imán
+    public float magnetSpeed = 5f;  // Velocidad del efecto de imán
+    private GameObject _player;  // Referencia al jugador
 
-    public float Speed = 5f;
-    private bool isOnPlay;
-    private float Timer = 0;
-    public float timeToDeactivated = 15;
-    private bool yaColisionado = false;
+    public float Speed = 5f;  // Velocidad de movimiento de la moneda
+    private bool isOnPlay;  // Controla si el juego está en ejecución
+    private float Timer = 0;  // Temporizador para la desactivación de la moneda
+    public float timeToDeactivated = 15f;  // Tiempo antes de desactivar la moneda
+    private bool yaColisionado = false;  // Verifica si ya ha colisionado con el jugador
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Colision");
-        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
-        OnGameStateChange(GameManager.GetInstance().currentGameState);
+        _player = GameObject.FindGameObjectWithTag("Player");  // Encuentra al jugador por el tag
+        GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;  // Se suscribe a los cambios de estado del juego
+        OnGameStateChange(GameManager.GetInstance().currentGameState);  // Verifica el estado actual del juego
     }
 
     void OnGameStateChange(Game_State _gs)
     {
-        isOnPlay = _gs == Game_State.Play;
-    }
-
-    private void OnEnable()
-    {
-        yaColisionado = false;
+        isOnPlay = _gs == Game_State.Play;  // Solo se permite interactuar cuando el juego está en "Play"
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,70 +32,63 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player") && !yaColisionado)
         {
             yaColisionado = true;
-
-            //AudioManager.instance.PlayMoneda();
-
-            SoundManager.GetInstance().SetAudioWithPosition(AUDIO_TYPE.HIT, transform.position);
-            
-
-            GameManager.GetInstance().SumarPuntos(1);  // Sumar puntos al jugador
-            gameObject.SetActive(false);  // Desactivar moneda
+            RecolectarMoneda();  // Manejar la recolección de la moneda
         }
-
-        if (_magnetOn)
-        {
-            if (other.CompareTag("Colision") && !yaColisionado)
-            {
-                yaColisionado = true;
-                GameManager.GetInstance().SumarPuntos(1);  // Sumar puntos al jugador
-                gameObject.SetActive(false);  // Desactivar moneda
-            }
-        }
-
-    }
-
-    void EndEffect()
-    {
-        _magnetOn = false;
     }
 
     void Update()
     {
-        if (!isOnPlay) return;
+        if (!isOnPlay) return;  // No ejecutar si no está en el estado de "Play"
 
+        // Efecto de imán activo
         if (_magnetOn)
         {
-
-          MagnetEffect();
-
+            MagnetEffect();
         }
 
+        // Temporizador para desactivar la moneda automáticamente
         Timer += Time.deltaTime;
         if (Timer > timeToDeactivated)
         {
             Timer = 0;
-            gameObject.SetActive(false);  // Desactivar moneda después de cierto tiempo
+            gameObject.SetActive(false);
         }
 
-        // Movimiento de la moneda
+        // Movimiento de la moneda hacia atrás
         transform.Translate(Vector3.back * Speed * Time.deltaTime);
     }
 
-    IEnumerator Atraer()
+    private void RecolectarMoneda()
     {
+        GameManager.GetInstance().AgregarMonedas(1);  // Añadir monedas al total
 
-        yield return new WaitForSeconds(.3f);
+        // Actualizar la UI de monedas, si está disponible
+        MonedasTotalesUI monedasTotalesUI = FindObjectOfType<MonedasTotalesUI>();
+        if (monedasTotalesUI != null)
+        {
+            monedasTotalesUI.OnCoinsUpdated();
+        }
 
-        transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
-
+        gameObject.SetActive(false);  // Desactivar la moneda
     }
 
     void MagnetEffect()
     {
-        //transform.position = Vector3.Lerp(this.transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
+        if (_player != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, _player.transform.position, magnetSpeed * Time.deltaTime);
 
-        StartCoroutine(Atraer());
+            // Si la moneda está lo suficientemente cerca del jugador, recolectarla automáticamente
+            if (Vector3.Distance(transform.position, _player.transform.position) < 0.5f && !yaColisionado)
+            {
+                yaColisionado = true;
+                RecolectarMoneda();
+            }
+        }
+    }
 
-        Invoke("EndEffect", 10f);
+    public void EndMagnetEffect()
+    {
+        _magnetOn = false;  // Finalizar el efecto de imán
     }
 }

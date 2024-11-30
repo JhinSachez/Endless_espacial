@@ -90,7 +90,6 @@ public class MultiplePoolSpawner : MonoBehaviour
         if (puedeGenerarEnTierra && this.CompareTag("Tierra")) return true;
         if (puedeGenerarEnCielo && this.CompareTag("Cielo")) return true;
         if (puedeGenerarEnEspacio && this.CompareTag("Espacio")) return true;
-        if (this.CompareTag("powerUp")) return true;
         return false;
     }
 

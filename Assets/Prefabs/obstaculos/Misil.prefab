@@ -63,6 +63,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Misil
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemigo
+      objectReference: {fileID: 0}
     - target: {fileID: 1082172605048455262, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -71,5 +81,73 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 159468600099615043}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6735586985719509911}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1930360191149649296}
   m_SourcePrefab: {fileID: 100100000, guid: 71554e1110ca75e409ed3ba0d94f0e9d, type: 3}
+--- !u!1 &8114818028599929510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 71554e1110ca75e409ed3ba0d94f0e9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8961259259651119095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &159468600099615043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114818028599929510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc01ccfbed860ff4096f975abfb5ac21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+--- !u!114 &-6735586985719509911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114818028599929510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdcfb6a6d119804cb3ece3ed75d63d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: -1, y: 0, z: 0}
+  speed: 5
+  Timer: 0
+  timeToDeactivated: 5
+--- !u!65 &-1930360191149649296
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8114818028599929510}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.24373627, y: 0.42512292, z: 1.5307617}
+  m_Center: {x: 0.0040664673, y: 0.49851564, z: 0.26538086}
