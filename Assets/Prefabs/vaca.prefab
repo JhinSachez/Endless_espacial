@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5653749084752023004}
   - component: {fileID: 3860462378826594615}
   - component: {fileID: 8360053251684209220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vaca
   m_TagString: coin
   m_Icon: {fileID: 0}
@@ -104,8 +104,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.3401461
-  m_Center: {x: 0.07646878, y: 1.0472349, z: 0}
+  m_Radius: 1.4886526
+  m_Center: {x: -0.07203777, y: 1.0472349, z: 0}
 --- !u!114 &8360053251684209220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,3 +121,5 @@ MonoBehaviour:
   magnetSpeed: 1
   Speed: 5
   timeToDeactivated: 15
+  collisionParticlesPrefabMonedas: {fileID: 3826799268829836026, guid: e1945fc118d1c914aa14643a2f637f0e,
+    type: 3}

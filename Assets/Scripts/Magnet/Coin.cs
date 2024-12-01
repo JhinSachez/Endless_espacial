@@ -15,6 +15,7 @@ public class Coin : MonoBehaviour
     public float timeToDeactivated = 15;
     private bool yaColisionado = false;
 
+
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Colision");

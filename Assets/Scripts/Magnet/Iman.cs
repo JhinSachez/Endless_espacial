@@ -22,6 +22,9 @@ public class Iman : MonoBehaviour
         {
             AudioManager.instance.PlayPowerUp();
 
+            other.GetComponent<PlayerCollision>().particulasColisionPower();
+
+
             Coin._magnetOn = true;
             gameObject.SetActive(false);
         }
