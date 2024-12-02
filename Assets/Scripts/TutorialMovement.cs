@@ -262,8 +262,7 @@ public class TutorialMovement : MonoBehaviour
         
         if (other.CompareTag("coin"))
         {
-            // Lógica para recolectar la moneda
-            GameManager.GetInstance().SumarPuntos(1);
+            // Lógica para recolectar la monedas
             other.gameObject.SetActive(false);  // Desactivar la moneda
         }
         
