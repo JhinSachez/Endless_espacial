@@ -268,7 +268,7 @@ public class Movement : MonoBehaviour
         {
             if (changeVelocity)
             {
-                speed += 10;
+                speed += 5;
                 changeVelocity = false;    
             }
             ReducirDuracion -= Time.deltaTime;
@@ -278,7 +278,7 @@ public class Movement : MonoBehaviour
             {
                 ReducirDuracion = 5;
                 incrementarIsOn = false;
-                speed -= 10;
+                speed -= 5;
             }
         }
     }
