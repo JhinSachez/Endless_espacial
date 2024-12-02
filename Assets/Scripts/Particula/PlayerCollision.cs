@@ -15,6 +15,6 @@ public class PlayerCollision : MonoBehaviour
 
     public void particulasColisionPower()
     {
-        collisionParticles.Play();
+        collisionParticlesPower.Play();
     }
 }
