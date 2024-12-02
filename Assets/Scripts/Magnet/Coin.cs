@@ -37,6 +37,10 @@ public class Coin : MonoBehaviour
             // Desactivar la moneda al tocar la barrera invisible
             gameObject.SetActive(false);
         }
+        if (other.CompareTag("Enemigo"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     void Update()

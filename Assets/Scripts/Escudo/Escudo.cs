@@ -28,7 +28,10 @@ public class Escudo : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        Debug.Log("escudo activo");
+        if (other.CompareTag("Enemigo"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     void Update()
