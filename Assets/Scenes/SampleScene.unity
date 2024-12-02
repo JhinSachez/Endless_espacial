@@ -1809,7 +1809,7 @@ MonoBehaviour:
   cooldownTime: 5
   puedeGenerarEnTierra: 0
   puedeGenerarEnCielo: 0
-  puedeGenerarEnEspacio: 1
+  puedeGenerarEnEspacio: 0
 --- !u!4 &643662113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9190429634775005895, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
@@ -3778,7 +3778,7 @@ MonoBehaviour:
   cooldownTime: 5
   puedeGenerarEnTierra: 0
   puedeGenerarEnCielo: 0
-  puedeGenerarEnEspacio: 1
+  puedeGenerarEnEspacio: 0
 --- !u!1 &1328807782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4016,7 +4016,17 @@ PrefabInstance:
     - target: {fileID: 1014928035501559227, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
       propertyPath: puedeGenerarEnCielo
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345501145629431903, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345501145629431903, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.98
       objectReference: {fileID: 0}
     - target: {fileID: 2613413955135868413, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
@@ -4026,7 +4036,17 @@ PrefabInstance:
     - target: {fileID: 2613413955135868413, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
       propertyPath: puedeGenerarEnCielo
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868137823509340963, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868137823509340963, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.98
       objectReference: {fileID: 0}
     - target: {fileID: 4464913919166980862, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
@@ -4061,7 +4081,17 @@ PrefabInstance:
     - target: {fileID: 7424713633315889043, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
       propertyPath: puedeGenerarEnCielo
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7624328693302992722, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7624328693302992722, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.98
       objectReference: {fileID: 0}
     - target: {fileID: 8775935842214674204, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
@@ -5383,7 +5413,7 @@ MonoBehaviour:
   cooldownTime: 5
   puedeGenerarEnTierra: 0
   puedeGenerarEnCielo: 0
-  puedeGenerarEnEspacio: 1
+  puedeGenerarEnEspacio: 0
 --- !u!1 &1829903608
 GameObject:
   m_ObjectHideFlags: 0

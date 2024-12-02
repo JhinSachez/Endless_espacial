@@ -10,13 +10,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
         type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5704
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.556769
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: -1.0593
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6706083e6e7dd2d4e9b148e1a4fd71a8,
         type: 3}
@@ -126,10 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdcfb6a6d119804cb3ece3ed75d63d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: -1, y: 0, z: 0}
-  speed: 5
-  Timer: 0
-  timeToDeactivated: 5
 --- !u!65 &7668320483622972106
 BoxCollider:
   m_ObjectHideFlags: 0

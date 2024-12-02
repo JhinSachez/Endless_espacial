@@ -57,6 +57,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
+        if (!isOnPlay) return;
         foreach (Touch touch in Input.touches) {
             if (touch.phase == TouchPhase.Began) {
                 fingerUpPos = touch.position;
@@ -78,7 +79,7 @@ public class Movement : MonoBehaviour
             }
         }
         
-        if (!isOnPlay) return;
+
         
         Vector3 pos = gameObject.transform.position;
         if (!line.Equals(targetline))

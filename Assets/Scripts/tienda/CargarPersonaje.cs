@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,17 @@ public class CargarPersonaje : MonoBehaviour
     public bool rojo;
     public bool fantasm;
     public bool white;
-    
+
+
+    private void Update()
+    {
+        if (rojo == false && fantasm == false && white == false)
+        {
+            rojo = true;
+            guardar();
+        }
+    }
+
     public void cometaRojo()
     {
         rojo = true;
