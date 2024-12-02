@@ -32,6 +32,11 @@ public class Reducir : MonoBehaviour
             gameObject.SetActive(false);
            
         }
+
+        if (other.CompareTag("Enemigo"))
+        {
+            gameObject.SetActive(false);
+        }
     }
     // Update is called once per frame
     void Update()
