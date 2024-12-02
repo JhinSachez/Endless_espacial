@@ -52,6 +52,18 @@ public class Coin : MonoBehaviour
         {
             MagnetEffect();
         }
+        
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, 0.5f);  // Radio de búsqueda de 0.5 unidades
+
+        foreach (Collider col in hitEnemies)
+        {
+            if (col.CompareTag("Enemigo"))
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+        }
+
     }
 
     private void RecolectarMoneda()

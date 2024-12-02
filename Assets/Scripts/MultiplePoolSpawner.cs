@@ -111,7 +111,8 @@ private static float sharedCooldown = 0f; // Cooldown global para sincronizar sp
         }
 
         obj.transform.position = transform.position;
-        obj.transform.rotation = Quaternion.identity;
+
+        obj.transform.rotation = Quaternion.Euler(0, 180, 0);
         Debug.Log($"Objeto generado correctamente: {obj.name} en spawner: {gameObject.name}");
         return obj;
     }
