@@ -3917,11 +3917,56 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Espacio
       objectReference: {fileID: 0}
+    - target: {fileID: 5900301466825265283, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900301466825265283, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900301466825265283, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
     - target: {fileID: 6009017521207253806, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
       propertyPath: objectPoolMultiple
       value: 
       objectReference: {fileID: 1278642673}
+    - target: {fileID: 6480658899002582032, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480658899002582032, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480658899002582032, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558941802129965149, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558941802129965149, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558941802129965149, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
     - target: {fileID: 6798719299161533584, guid: a3ea2d9e3e0e692448bf5e63c04fb026,
         type: 3}
       propertyPath: objectPoolMultiple
