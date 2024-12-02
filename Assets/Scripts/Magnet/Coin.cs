@@ -30,6 +30,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player") && !yaColisionado)
         {
             yaColisionado = true;
+            SoundManager.GetInstance().SetAudioWithPosition(AUDIO_TYPE.HIT, transform.position);
             RecolectarMoneda();  // Manejar la recolección de la moneda
         }
         else if (other.CompareTag("InvisibleBarrier"))
