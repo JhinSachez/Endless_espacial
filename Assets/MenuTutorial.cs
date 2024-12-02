@@ -23,7 +23,7 @@ public class MenuTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_distanceScore.distance >= 300)
+        if (_distanceScore.distance >= 5000)
         {
             menuTutorial.SetActive(true);
             GameManager.GetInstance().ChangeGameState(Game_State.Pause);

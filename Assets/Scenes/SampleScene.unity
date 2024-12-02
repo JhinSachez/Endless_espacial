@@ -5182,7 +5182,7 @@ MonoBehaviour:
   rojoPersonaje: {fileID: 1383050246}
   fantasmPersonaje: {fileID: 374425242}
   whitePersonaje: {fileID: 888252732}
-  rojo: 0
+  rojo: 1
   fantasm: 0
   white: 0
 --- !u!4 &1736854420

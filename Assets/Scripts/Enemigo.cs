@@ -14,7 +14,7 @@ public class Enemigo : MonoBehaviour
         {
             AudioManager.instance.PlayGameOver();
 
-            collider.GetComponent<PlayerCollision>().particulasColision();
+           // collider.GetComponent<PlayerCollision>().particulasColision();
 
             collider.GetComponent<CombateJugador>().TakeDamage(damage);
             gameObject.SetActive(false);
