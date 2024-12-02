@@ -5,6 +5,7 @@ using UnityEngine;
 public class Escudo : MonoBehaviour
 {
     bool isOnPlay;
+
     void Start()
     {
         GameManager.GetInstance().OnGameStateChanged += OnGameStateChange;
@@ -20,6 +21,8 @@ public class Escudo : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             AudioManager.instance.PlayPowerUp();
+
+            other.GetComponent<PlayerCollision>().particulasColisionPower();
 
             PlayerShleld._isShieldOn = true;
             gameObject.SetActive(false);

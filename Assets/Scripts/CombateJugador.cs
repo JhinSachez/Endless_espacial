@@ -8,7 +8,7 @@ public class CombateJugador : MonoBehaviour
 
     [SerializeField] public int Vida;
 
-    //public event EventHandler MuerteJugador;
+    
 
     public bool muerteJugador = false;
 

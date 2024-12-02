@@ -12,6 +12,7 @@ public class Coin : MonoBehaviour
     private bool isOnPlay;  // Controla si el juego está en ejecución
     private bool yaColisionado = false;  // Verifica si ya ha colisionado con el jugador
 
+
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");  // Encuentra al jugador por el tag

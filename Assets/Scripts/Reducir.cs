@@ -26,6 +26,9 @@ public class Reducir : MonoBehaviour
         {
             AudioManager.instance.PlayPowerUp();
 
+            other.GetComponent<PlayerCollision>().particulasColisionPower();
+
+
             gameObject.SetActive(false);
            
         }
