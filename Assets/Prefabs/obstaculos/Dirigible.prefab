@@ -90,6 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 07cde75da9791464a88d4d9cf7ad70b0,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07cde75da9791464a88d4d9cf7ad70b0,
+        type: 3}
       propertyPath: m_TagString
       value: Enemigo
       objectReference: {fileID: 0}
@@ -160,5 +165,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4092155, y: 2.8682873, z: 6.1665993}
-  m_Center: {x: -0.5161053, y: 3.176339, z: -0.009178961}
+  m_Size: {x: 1.4092155, y: 7.753346, z: 6.1665993}
+  m_Center: {x: -0.51610535, y: 2.556212, z: -0.009178892}

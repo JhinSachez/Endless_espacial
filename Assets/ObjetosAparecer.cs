@@ -33,7 +33,6 @@ public class ObjetosAparecer : MonoBehaviour
             Transicion.SetActive(true);
 
             StartCoroutine(Disappear());
-            UpdateSpawnerBools();
         }
         
         if(_distanceScore.distance >= 20000)
@@ -43,16 +42,6 @@ public class ObjetosAparecer : MonoBehaviour
             Transicion.SetActive(true);
 
             StartCoroutine(Disappear2());
-        }
-    }
-
-    private void UpdateSpawnerBools()
-    {
-        foreach (var spawner in spawners)
-        {
-            spawner.puedeGenerarEnTierra = IsOnEarth;
-            spawner.puedeGenerarEnCielo = IsOnSky;
-            spawner.puedeGenerarEnEspacio = IsOnSpace;
         }
     }
 
@@ -66,7 +55,7 @@ public class ObjetosAparecer : MonoBehaviour
     IEnumerator Disappear2()
     {
         
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(5);
         cam.backgroundColor = Color.black;
         Space.SetActive(true);
     }

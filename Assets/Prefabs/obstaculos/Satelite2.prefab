@@ -90,6 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a31129f522a3a54b8abdf06e3bae564,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a31129f522a3a54b8abdf06e3bae564,
+        type: 3}
       propertyPath: m_TagString
       value: Enemigo
       objectReference: {fileID: 0}
@@ -104,11 +109,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a31129f522a3a54b8abdf06e3bae564,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3914776030909375794}
+      addedObject: {fileID: -1199510420194274895}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a31129f522a3a54b8abdf06e3bae564,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1199510420194274895}
+      addedObject: {fileID: 8910984740970617974}
   m_SourcePrefab: {fileID: 100100000, guid: 2a31129f522a3a54b8abdf06e3bae564, type: 3}
 --- !u!1 &7843641953510834162 stripped
 GameObject:
@@ -129,18 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
---- !u!114 &-3914776030909375794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7843641953510834162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfdcfb6a6d119804cb3ece3ed75d63d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &-1199510420194274895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,5 +153,19 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.740137, y: 2.7157574, z: 5.399559}
-  m_Center: {x: -0.014763925, y: 3.8682945, z: -0.10291792}
+  m_Size: {x: 1.740137, y: 6.3979425, z: 5.3995967}
+  m_Center: {x: -0.014763897, y: 3.764949, z: -0.10291791}
+--- !u!114 &8910984740970617974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843641953510834162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa4f2cf0c6f9ba409615b853a410401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnSpace: 0
+  _distanceScore: {fileID: 0}
