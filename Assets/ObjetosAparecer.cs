@@ -32,8 +32,8 @@ public class ObjetosAparecer : MonoBehaviour
             IsOnSky = true;
             Transicion.SetActive(true);
 
-            UpdateSpawnerBools();
             StartCoroutine(Disappear());
+            UpdateSpawnerBools();
         }
         
         if(_distanceScore.distance >= 20000)

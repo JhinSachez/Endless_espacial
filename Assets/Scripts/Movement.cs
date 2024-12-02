@@ -33,8 +33,11 @@ public class Movement : MonoBehaviour
     public float ReducirDuracion = 5;
     public bool reducirisOn;
     public bool incrementarIsOn;
+    public bool changeVelocity;
     private DistanceScore _distanceScore;
-    public int speed;
+    public int speed = 15;
+    private int nextgoal = 500;
+    
     
     public bool detectSwipeAfterRelease = false;
 
@@ -223,27 +226,16 @@ public class Movement : MonoBehaviour
 
     void Zmovimiento()
     {
-        speed = 15;
         movement.z = speed;
-        if (_distanceScore.distance >= 500 && reducirisOn == false && incrementarIsOn == false)
+        if (_distanceScore.distance >= nextgoal && speed <= 40 && reducirisOn == false && incrementarIsOn == false)
         {
-            speed = 19;
-            movement.z = speed;
-            if (_distanceScore.distance >= 1000)
-            {
-                speed = 25;
-                movement.z = speed;
-            }
-            if (_distanceScore.distance >= 1800)
-            {
-                speed = 30;
-                movement.z = speed;
-            }
+            nextgoal += 300;
+            speed += 2;
         }
-        else if(reducirisOn == true)
+        else if(reducirisOn)
         {
             ReducirVelocidad();
-        }else if (incrementarIsOn == true)
+        }else if (incrementarIsOn)
         {
             IncrementarVelocidad();
         }
@@ -253,13 +245,18 @@ public class Movement : MonoBehaviour
     {
         if (reducirisOn)
         {
-            speed = 2;
+            if (changeVelocity)
+            {
+                speed -= 6;
+                changeVelocity = false;    
+            }
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
             if (ReducirDuracion <= 0)
             {
                 ReducirDuracion = 5;
                 reducirisOn = false;
+                speed += 6;
             }
         }
 
@@ -269,7 +266,11 @@ public class Movement : MonoBehaviour
     {
         if (incrementarIsOn)
         {
-            speed = 70;
+            if (changeVelocity)
+            {
+                speed += 10;
+                changeVelocity = false;    
+            }
             ReducirDuracion -= Time.deltaTime;
             movement.z = speed;
 
@@ -277,6 +278,7 @@ public class Movement : MonoBehaviour
             {
                 ReducirDuracion = 5;
                 incrementarIsOn = false;
+                speed -= 10;
             }
         }
     }
@@ -286,6 +288,7 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpRedicir"))
         {
             reducirisOn = true;
+            changeVelocity = true;
             incrementarIsOn = false;
           
         }
@@ -293,8 +296,9 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("PowerUpIncrementar"))
         {
             incrementarIsOn = true;
+            changeVelocity = true;
             reducirisOn = false;
-            Debug.Log("Incrementar activado");
+            
         }
         
       /*  if (other.CompareTag("coin"))
