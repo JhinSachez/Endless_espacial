@@ -13,6 +13,16 @@ public class SceneTransition : MonoBehaviour
 
     }
 
+    public void Tuto()
+    {
+        StartCoroutine(LoadTuto());
+    }
+
+    public void Jugar()
+    {
+        StartCoroutine(TutoJugar());
+    }
+
     IEnumerator LoadLevel()
     {
         yield return new WaitForSeconds(0.5f);
@@ -20,6 +30,29 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        transitionAnim.SetTrigger("Start");
+        yield return null;
+    }
+    
+    IEnumerator LoadTuto()
+    {
+        yield return new WaitForSeconds(0.5f);
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+
+        transitionAnim.SetTrigger("Start");
+        yield return null;
+    }
+    IEnumerator TutoJugar()
+    {
+        yield return new WaitForSeconds(0.5f);
+        transitionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
         transitionAnim.SetTrigger("Start");
         yield return null;
